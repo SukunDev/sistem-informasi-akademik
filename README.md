@@ -1,1 +1,1 @@
-# Express JS Rest Api MVC
+# Sistem Informasi Akademik Rest API

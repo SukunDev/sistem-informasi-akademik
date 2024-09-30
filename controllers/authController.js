@@ -48,8 +48,6 @@ exports.login = async (req, res) => {
       token,
     });
   } catch (error) {
-    console.log(error);
-
     res.status(500).json({ message: "terjadi kesalahan pada server" });
   }
 };
@@ -120,8 +118,6 @@ exports.changePassword = async (req, res) => {
       message: "berhasil mengubah password",
     });
   } catch (error) {
-    console.log(error);
-
     return res.status(500).json({ message: "Terjadi kesalahan pada server" });
   }
 };

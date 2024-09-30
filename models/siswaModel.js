@@ -21,7 +21,7 @@ const Siswa = sequelize.define(
       allowNull: false,
     },
     jk: {
-      type: DataTypes.STRING(20),
+      type: DataTypes.STRING(50),
       allowNull: false,
     },
     agama: {

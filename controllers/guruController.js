@@ -46,7 +46,7 @@ exports.createGuruProfile = async (req, res) => {
   try {
     const user = req.user;
     let userId;
-    if (user.hakAkses == "siswa") {
+    if (user.hakAkses == "guru") {
       userId = user.id;
     } else if (user.hakAkses == "admin") {
       const { username, password } = req.body;
@@ -144,7 +144,7 @@ exports.updateGuruProfile = async (req, res) => {
   try {
     const user = req.user;
     let userId;
-    if (user.hakAkses == "wali murid") {
+    if (user.hakAkses == "guru") {
       userId = user.id;
     } else if (user.hakAkses == "admin") {
       const queryId = req.params.id;

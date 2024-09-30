@@ -168,7 +168,7 @@ exports.updateSiswaProfile = async (req, res) => {
   try {
     const user = req.user;
     let userId;
-    if (user.hakAkses == "wali murid") {
+    if (user.hakAkses == "siswa") {
       userId = user.id;
     } else if (user.hakAkses == "admin") {
       const queryId = req.params.id;
@@ -303,7 +303,6 @@ exports.deleteSiswa = async (req, res) => {
       .status(200)
       .json({ status: true, message: "User dan profil berhasil dihapus" });
   } catch (error) {
-    console.error(error);
     return res
       .status(500)
       .json({ status: false, message: "Terjadi kesalahan pada server" });

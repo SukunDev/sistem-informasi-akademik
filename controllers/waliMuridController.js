@@ -56,7 +56,7 @@ exports.createWaliMuridProfile = async (req, res) => {
   try {
     const user = req.user;
     let userId;
-    if (user.hakAkses == "siswa") {
+    if (user.hakAkses == "wali murid") {
       userId = user.id;
     } else if (user.hakAkses == "admin") {
       const { username, password } = req.body;
@@ -247,7 +247,6 @@ exports.deleteWaliMurid = async (req, res) => {
       .status(200)
       .json({ status: true, message: "User dan profil berhasil dihapus" });
   } catch (error) {
-    console.error(error);
     return res
       .status(500)
       .json({ status: false, message: "Terjadi kesalahan pada server" });

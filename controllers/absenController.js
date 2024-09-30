@@ -134,23 +134,7 @@ exports.createAbsen = async (req, res) => {
 exports.updateAbsen = async (req, res) => {
   try {
     const user = req.user;
-    let userId;
-    if (user.hakAkses == "admin") {
-      const { userId: id } = req.body;
-      if (!id) {
-        return res.status(400).json({
-          status: false,
-          message: "field 'userId' tidak boleh kosong",
-        });
-      }
-      const user = await User.findOne({ where: { id: id } });
-      if (!user) {
-        return res
-          .status(400)
-          .json({ status: false, message: "user tidak di temukan" });
-      }
-      userId = user.id;
-    } else {
+    if (user.hakAkses != "admin") {
       return res
         .status(400)
         .json({ status: false, message: "tidak memiliki akses" });
@@ -169,25 +153,18 @@ exports.updateAbsen = async (req, res) => {
         message: "query 'id' tidak boleh kosong",
       });
     }
-    const siswa = await Siswa.findOne({
-      where: {
-        userId: userId,
-      },
-    });
-    if (!siswa) {
+    const absen = await AbsenSiswa.findOne({ where: { id: absenId } });
+
+    if (!absen) {
       return res.status(400).json({
         status: false,
-        message: "siswa tidak di temukan",
+        message: "tidak dapat menemukan absen",
       });
     }
     const date = helper.getDate();
     const day = helper.getDay();
 
-    const absen = await AbsenSiswa.findOne({ where: { id: absenId } });
     await absen.update({
-      siswaId: siswa.id,
-      kelasId: siswa.kelasId,
-      semester: siswa.semester,
       tglAbsen: date,
       hariAbsen: day,
       keterangan: keterangan,

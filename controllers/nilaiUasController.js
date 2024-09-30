@@ -34,7 +34,6 @@ exports.getNilaiUas = async (req, res) => {
     });
     return res.status(200).json({ status: true, data: nilaiUas });
   } catch (error) {
-    console.error(error);
     return res
       .status(500)
       .json({ status: false, message: "Terjadi kesalahan pada server" });
@@ -141,7 +140,6 @@ exports.createNilaiUas = async (req, res) => {
       data: createNilai,
     });
   } catch (error) {
-    console.error(error);
     return res
       .status(500)
       .json({ status: false, message: "Terjadi kesalahan pada server" });
@@ -209,7 +207,6 @@ exports.updateNilaiUas = async (req, res) => {
       data: nilaiUas,
     });
   } catch (error) {
-    console.error(error);
     return res
       .status(500)
       .json({ status: false, message: "Terjadi kesalahan pada server" });
@@ -239,7 +236,6 @@ exports.deleteNilaiUas = async (req, res) => {
       .status(200)
       .json({ status: true, message: "Nilai UAS berhasil dihapus" });
   } catch (error) {
-    console.error(error);
     return res
       .status(500)
       .json({ status: false, message: "Terjadi kesalahan pada server" });

@@ -16,9 +16,7 @@ exports.getAbsen = async (req, res) => {
     });
     return res.status(200).json({ satus: true, data: absen });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ status: false, message: "terjadi kesalahan pada server" });
+    return res.status(500).json({ status: false, message: error.message });
   }
 };
 
@@ -52,9 +50,7 @@ exports.getSiswaAbsen = async (req, res) => {
     });
     return res.status(200).json({ satus: true, data: absen });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ status: false, message: "terjadi kesalahan pada server" });
+    return res.status(500).json({ status: false, message: error.message });
   }
 };
 
@@ -125,9 +121,7 @@ exports.createAbsen = async (req, res) => {
       data: absen,
     });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ status: false, message: "terjadi kesalahan pada server" });
+    return res.status(500).json({ status: false, message: error.message });
   }
 };
 
@@ -175,9 +169,7 @@ exports.updateAbsen = async (req, res) => {
       data: absen,
     });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ status: false, message: "terjadi kesalahan pada server" });
+    return res.status(500).json({ status: false, message: error.message });
   }
 };
 
@@ -202,8 +194,6 @@ exports.deleteAbsen = async (req, res) => {
       .status(201)
       .json({ satus: true, message: "absen berhasil di hapus" });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ status: false, message: "terjadi kesalahan pada server" });
+    return res.status(500).json({ status: false, message: error.message });
   }
 };

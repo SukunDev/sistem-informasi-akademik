@@ -18,9 +18,7 @@ exports.uploadImage = async (req, res) => {
       data: { foto: fileUrl },
     });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ status: false, message: "Terjadi kesalahan pada server" });
+    return res.status(500).json({ status: false, message: error.message });
   }
 };
 
@@ -54,8 +52,6 @@ exports.deleteImage = async (req, res) => {
       });
     });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ status: false, message: "Terjadi kesalahan pada server" });
+    return res.status(500).json({ status: false, message: error.message });
   }
 };

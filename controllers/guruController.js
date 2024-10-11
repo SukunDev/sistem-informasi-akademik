@@ -9,9 +9,7 @@ exports.getGuru = async (req, res) => {
     });
     return res.status(200).json({ satus: true, data: guru });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ status: false, message: "terjadi kesalahan pada server" });
+    return res.status(500).json({ status: false, message: error.message });
   }
 };
 
@@ -36,9 +34,7 @@ exports.getGuruProfile = async (req, res) => {
     }
     return res.status(200).json({ satus: true, data: guru });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ status: false, message: "terjadi kesalahan pada server" });
+    return res.status(500).json({ status: false, message: error.message });
   }
 };
 
@@ -80,8 +76,12 @@ exports.createGuruProfile = async (req, res) => {
         .json({ status: false, message: "tidak memiliki akses" });
     }
 
-    const { nama, ttl, jk, agama, noTelp, alamat, foto } = req.body;
-    if (!nama) {
+    const { nig, nama, ttl, jk, agama, noTelp, alamat, foto } = req.body;
+    if (!nig) {
+      return res
+        .status(400)
+        .json({ status: false, message: "field 'nig' tidak boleh kosong" });
+    } else if (!nama) {
       return res
         .status(400)
         .json({ status: false, message: "field 'nama' tidak boleh kosong" });
@@ -120,6 +120,7 @@ exports.createGuruProfile = async (req, res) => {
     }
     const createGuru = await Guru.create({
       userId: userId,
+      nig: nig,
       nama: nama,
       ttl: ttl,
       jk: jk,
@@ -134,9 +135,7 @@ exports.createGuruProfile = async (req, res) => {
       data: createGuru,
     });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ status: false, message: "terjadi kesalahan pada server" });
+    return res.status(500).json({ status: false, message: error.message });
   }
 };
 
@@ -166,8 +165,12 @@ exports.updateGuruProfile = async (req, res) => {
         .json({ status: false, message: "tidak memiliki akses" });
     }
 
-    const { nama, ttl, jk, agama, noTelp, alamat, foto } = req.body;
-    if (!nama) {
+    const { nig, nama, ttl, jk, agama, noTelp, alamat, foto } = req.body;
+    if (!nig) {
+      return res
+        .status(400)
+        .json({ status: false, message: "field 'nig' tidak boleh kosong" });
+    } else if (!nama) {
       return res
         .status(400)
         .json({ status: false, message: "field 'nama' tidak boleh kosong" });
@@ -205,6 +208,7 @@ exports.updateGuruProfile = async (req, res) => {
       });
     }
     const updateGuru = await guru.update({
+      nig: nig,
       nama: nama,
       ttl: ttl,
       jk: jk,
@@ -219,9 +223,7 @@ exports.updateGuruProfile = async (req, res) => {
       data: updateGuru,
     });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ status: false, message: "terjadi kesalahan pada server" });
+    return res.status(500).json({ status: false, message: error.message });
   }
 };
 
@@ -265,8 +267,6 @@ exports.deleteGuru = async (req, res) => {
       .status(200)
       .json({ satus: true, message: "user dan profile berhasil di hapus" });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ status: false, message: "terjadi kesalahan pada server" });
+    return res.status(500).json({ status: false, message: error.message });
   }
 };

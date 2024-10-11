@@ -15,9 +15,7 @@ exports.getWaliMurid = async (req, res) => {
     });
     return res.status(200).json({ satus: true, data: wali });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ status: false, message: "terjadi kesalahan pada server" });
+    return res.status(500).json({ status: false, message: error.message });
   }
 };
 
@@ -46,9 +44,7 @@ exports.getWaliMuridProfile = async (req, res) => {
     }
     return res.status(200).json({ satus: true, data: wali });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ status: false, message: "terjadi kesalahan pada server" });
+    return res.status(500).json({ status: false, message: error.message });
   }
 };
 
@@ -132,9 +128,7 @@ exports.createWaliMuridProfile = async (req, res) => {
       data: createWaliMurid,
     });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ status: false, message: "terjadi kesalahan pada server" });
+    return res.status(500).json({ status: false, message: error.message });
   }
 };
 
@@ -205,9 +199,7 @@ exports.updateWaliMuridProfile = async (req, res) => {
       data: updateWaliMurid,
     });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ status: false, message: "terjadi kesalahan pada server" });
+    return res.status(500).json({ status: false, message: error.message });
   }
 };
 
@@ -247,8 +239,6 @@ exports.deleteWaliMurid = async (req, res) => {
       .status(200)
       .json({ status: true, message: "User dan profil berhasil dihapus" });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ status: false, message: "Terjadi kesalahan pada server" });
+    return res.status(500).json({ status: false, message: error.message });
   }
 };

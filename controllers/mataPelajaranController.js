@@ -5,9 +5,7 @@ exports.getMatpel = async (req, res) => {
     const matpel = await Matpel.findAll();
     return res.status(200).json({ satus: true, data: matpel });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ status: false, message: "terjadi kesalahan pada server" });
+    return res.status(500).json({ status: false, message: error.message });
   }
 };
 
@@ -36,9 +34,7 @@ exports.createMatpel = async (req, res) => {
       .status(201)
       .json({ satus: true, message: "matpel berhasil di buat", data: matpel });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ status: false, message: "terjadi kesalahan pada server" });
+    return res.status(500).json({ status: false, message: error.message });
   }
 };
 
@@ -71,9 +67,7 @@ exports.updateMatpel = async (req, res) => {
       data: matpel,
     });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ status: false, message: "terjadi kesalahan pada server" });
+    return res.status(500).json({ status: false, message: error.message });
   }
 };
 
@@ -98,8 +92,6 @@ exports.deleteMatpel = async (req, res) => {
       .status(201)
       .json({ satus: true, message: "mata pelajaran berhasil di hapus" });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ status: false, message: "terjadi kesalahan pada server" });
+    return res.status(500).json({ status: false, message: error.message });
   }
 };

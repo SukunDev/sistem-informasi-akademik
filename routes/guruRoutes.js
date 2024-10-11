@@ -3,6 +3,8 @@ const guruController = require("../controllers/guruController");
 const nilaiUtsController = require("../controllers/nilaiUtsController");
 const nilaiUasController = require("../controllers/nilaiUasController");
 const jadwalPelajaranController = require("../controllers/jadwalPelajaranController");
+const siswaController = require("../controllers/siswaController");
+const kelasController = require("../controllers/kelasController");
 
 router.get("/jadwal-mengajar", jadwalPelajaranController.getJadwalGuru);
 
@@ -19,5 +21,10 @@ router.get("/nilai-uas", nilaiUasController.getNilaiUas);
 router.post("/nilai-uas", nilaiUasController.createNilaiUas);
 router.post("/nilai-uas/:id", nilaiUasController.updateNilaiUas);
 router.delete("/nilai-uas/:id", nilaiUasController.deleteNilaiUas);
+
+router.get("/siswa", siswaController.getSiswa);
+router.get("/siswa/:id", siswaController.getSiswaSingle);
+
+router.get("/kelas", kelasController.getKelas);
 
 module.exports = router;

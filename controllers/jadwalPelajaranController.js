@@ -11,6 +11,7 @@ exports.getJadwalPelajaran = async (req, res) => {
         {
           model: Guru,
           as: "guru",
+          attributes: { exclude: ["userId"] },
         },
         {
           model: Kelas,
@@ -24,9 +25,7 @@ exports.getJadwalPelajaran = async (req, res) => {
     });
     return res.status(200).json({ satus: true, data: jadwal });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ status: false, message: "terjadi kesalahan pada server" });
+    return res.status(500).json({ status: false, message: error.message });
   }
 };
 
@@ -41,12 +40,28 @@ exports.getJadwalGuru = async (req, res) => {
         .status(400)
         .json({ status: false, message: "tidak dapat menemukan guru" });
     }
-    const jadwal = await Jadwal.findAll({ where: { guruId: guru.id } });
+    const jadwal = await Jadwal.findAll({
+      where: { guruId: guru.id },
+      attributes: { exclude: ["guruId", "kelasId", "matpelId"] },
+      include: [
+        {
+          model: Guru,
+          as: "guru",
+          attributes: { exclude: ["userId"] },
+        },
+        {
+          model: Kelas,
+          as: "kelas",
+        },
+        {
+          model: Matpel,
+          as: "mataPelajaran",
+        },
+      ],
+    });
     return res.status(200).json({ satus: true, data: jadwal });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ status: false, message: "terjadi kesalahan pada server" });
+    return res.status(500).json({ status: false, message: error.message });
   }
 };
 
@@ -98,9 +113,7 @@ exports.createJadwalPelajaran = async (req, res) => {
       data: jadwal,
     });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ status: false, message: "terjadi kesalahan pada server" });
+    return res.status(500).json({ status: false, message: error.message });
   }
 };
 
@@ -165,9 +178,7 @@ exports.updateJadwalPelajaran = async (req, res) => {
       data: jadwal,
     });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ status: false, message: "terjadi kesalahan pada server" });
+    return res.status(500).json({ status: false, message: error.message });
   }
 };
 
@@ -192,8 +203,6 @@ exports.deleteJadwalPelajaran = async (req, res) => {
       .status(201)
       .json({ satus: true, message: "jadwal pelajaran berhasil di hapus" });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ status: false, message: "terjadi kesalahan pada server" });
+    return res.status(500).json({ status: false, message: error.message });
   }
 };

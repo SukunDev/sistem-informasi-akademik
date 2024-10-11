@@ -34,9 +34,7 @@ exports.getNilaiUts = async (req, res) => {
     });
     return res.status(200).json({ status: true, data: nilaiUts });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ status: false, message: "Terjadi kesalahan pada server" });
+    return res.status(500).json({ status: false, message: error.message });
   }
 };
 
@@ -71,9 +69,7 @@ exports.getSiswaNilaiUts = async (req, res) => {
     });
     return res.status(200).json({ satus: true, data: nilaiUts });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ status: false, message: "terjadi kesalahan pada server" });
+    return res.status(500).json({ status: false, message: error.message });
   }
 };
 
@@ -140,9 +136,7 @@ exports.createNilaiUts = async (req, res) => {
       data: createNilai,
     });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ status: false, message: "Terjadi kesalahan pada server" });
+    return res.status(500).json({ status: false, message: error.message });
   }
 };
 
@@ -207,9 +201,7 @@ exports.updateNilaiUts = async (req, res) => {
       data: nilaiUts,
     });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ status: false, message: "Terjadi kesalahan pada server" });
+    return res.status(500).json({ status: false, message: error.message });
   }
 };
 
@@ -236,8 +228,6 @@ exports.deleteNilaiUts = async (req, res) => {
       .status(200)
       .json({ status: true, message: "Nilai UTS berhasil dihapus" });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ status: false, message: "Terjadi kesalahan pada server" });
+    return res.status(500).json({ status: false, message: error.message });
   }
 };

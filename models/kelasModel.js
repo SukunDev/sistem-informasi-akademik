@@ -19,7 +19,7 @@ const Kelas = sequelize.define(
   }
 );
 
-Kelas.hasMany(Siswa, { foreignKey: "kelasId" });
+Kelas.hasMany(Siswa, { foreignKey: "kelasId", as: "siswa" });
 Siswa.belongsTo(Kelas, { foreignKey: "kelasId", as: "kelas" });
 
 Kelas.hasMany(Jadwal, { foreignKey: "kelasId" });

@@ -48,7 +48,7 @@ exports.login = async (req, res) => {
       token,
     });
   } catch (error) {
-    res.status(500).json({ message: "terjadi kesalahan pada server" });
+    res.status(500).json({ status: false, message: error.message });
   }
 };
 
@@ -96,7 +96,7 @@ exports.register = async (req, res) => {
       },
     });
   } catch (error) {
-    return res.status(500).json({ message: "Terjadi kesalahan pada server" });
+    return res.status(500).json({ status: false, message: error.message });
   }
 };
 
@@ -118,6 +118,6 @@ exports.changePassword = async (req, res) => {
       message: "berhasil mengubah password",
     });
   } catch (error) {
-    return res.status(500).json({ message: "Terjadi kesalahan pada server" });
+    return res.status(500).json({ status: false, message: error.message });
   }
 };

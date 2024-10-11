@@ -1,0 +1,1315 @@
+{
+	"info": {
+		"_postman_id": "37aa3f4e-e50b-4825-ae21-4aa856d3cf02",
+		"name": "SiswaManagement",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "17661714"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Set accessToken environment variable if response status is true\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    if (jsonData.status === true) {\r",
+									"        pm.environment.set(\"token\", jsonData.token);\r",
+									"    }\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"password12\",\r\n    \"role\": \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/auth/login"
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"password12\",\r\n    \"role\": \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/auth/register"
+					},
+					"response": []
+				},
+				{
+					"name": "ChangePassword",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"oldPassword\": \"password12\",\r\n    \"password\": \"password24\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/auth/change-password"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Profile",
+					"item": [
+						{
+							"name": "Get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:3000/api/admin/profile"
+							},
+							"response": []
+						},
+						{
+							"name": "Insert",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nama\": \"Admin Profile 1\",\r\n    \"ttl\": \"Pati, 18 September 1992\",\r\n    \"jk\": \"laki laki\",\r\n    \"agama\": \"Islam\",\r\n    \"noTelp\": \"08xxxxxxxxxx\",\r\n    \"alamat\": \"Pati kota cuy\",\r\n    \"foto\": \"http://localhost:3000/uploads/1727411642380.jpg\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:3000/api/admin/profile"
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nama\": \"Admin Profile 1\",\r\n    \"ttl\": \"Pati, 18 September 1992\",\r\n    \"jk\": \"laki laki\",\r\n    \"agama\": \"Islam\",\r\n    \"noTelp\": \"08xxxxxxxxxx\",\r\n    \"alamat\": \"Pati kota cuy\",\r\n    \"foto\": \"http://localhost:3000/uploads/1727411642380.jpg\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:3000/api/admin/profile/update"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Mata Pelajaran",
+					"item": [
+						{
+							"name": "Get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:3000/api/admin/matpel"
+							},
+							"response": []
+						},
+						{
+							"name": "Insert",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nama\": \"MTK\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:3000/api/admin/matpel"
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nama\": \"PKN\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:3000/api/admin/matpel/4"
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": "http://localhost:3000/api/admin/matpel/4"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Kelas",
+					"item": [
+						{
+							"name": "Get",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:3000/api/admin/kelas"
+							},
+							"response": []
+						},
+						{
+							"name": "Insert",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nama\": \"X\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:3000/api/admin/kelas"
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nama\": \"XII\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:3000/api/admin/kelas/3"
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": "http://localhost:3000/api/admin/kelas/3"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Jadwal Pelajaran",
+					"item": [
+						{
+							"name": "Get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:3000/api/admin/jadwal-pelajaran"
+							},
+							"response": []
+						},
+						{
+							"name": "Insert",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"hari\":\"senin\",\r\n    \"jam\": \"07.00 - 08.00\",\r\n    \"guruId\": 1,\r\n    \"kelasId\": 1,\r\n    \"matpelId\": 3\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:3000/api/admin/jadwal-pelajaran"
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"hari\":\"senin\",\r\n    \"jam\": \"07.00 - 08.00\",\r\n    \"guruId\": 1,\r\n    \"kelasId\": 1,\r\n    \"matpelId\": 3\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:3000/api/admin/jadwal-pelajaran/8"
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": "http://localhost:3000/api/admin/jadwal-pelajaran/3"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Siswa",
+					"item": [
+						{
+							"name": "Get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:3000/api/admin/siswa"
+							},
+							"response": []
+						},
+						{
+							"name": "Insert",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"siswa1\",\r\n    \"password\": \"password12\",\r\n    \"kelasId\": 1,\r\n    \"semester\": \"satu / 1\",\r\n    \"nama\": \"Siswa Profile 1\",\r\n    \"ttl\": \"Pati, 18 September 1992\",\r\n    \"jk\": \"laki laki\",\r\n    \"agama\": \"Islam\",\r\n    \"noTelp\": \"08xxxxxxxxxx\",\r\n    \"alamat\": \"Pati kota cuy\",\r\n    \"foto\": \"http://localhost:3000/uploads/1727411642380.jpg\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:3000/api/admin/siswa"
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"kelasId\": 1,\r\n    \"semester\": \"satu / 1\",\r\n    \"nama\": \"Siswa Profile 1\",\r\n    \"ttl\": \"Pati, 18 September 1992\",\r\n    \"jk\": \"326759254362345\",\r\n    \"agama\": \"Islam\",\r\n    \"noTelp\": \"08xxxxxxxxxx\",\r\n    \"alamat\": \"Pati kota cuy\",\r\n    \"foto\": \"asdasd\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:3000/api/admin/siswa/2"
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"kelasId\": 1,\r\n    \"semester\": \"satu / 1\",\r\n    \"nama\": \"Siswa Profile 1\",\r\n    \"ttl\": \"Pati, 18 September 1992\",\r\n    \"jk\": \"326759254362345\",\r\n    \"agama\": \"Islam\",\r\n    \"noTelp\": \"08xxxxxxxxxx\",\r\n    \"alamat\": \"Pati kota cuy\",\r\n    \"foto\": \"asdasd\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:3000/api/admin/siswa/2"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Guru",
+					"item": [
+						{
+							"name": "Get",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{token}}"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:3000/api/admin/guru"
+							},
+							"response": []
+						},
+						{
+							"name": "Insert",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"guru1\",\r\n    \"password\": \"password12\",\r\n    \"nama\": \"Guru Profile 1\",\r\n    \"ttl\": \"Pati, 18 September 1992\",\r\n    \"jk\": \"326759254362345\",\r\n    \"agama\": \"Islam\",\r\n    \"noTelp\": \"08xxxxxxxxxx\",\r\n    \"alamat\": \"Pati kota cuy\",\r\n    \"foto\": \"http://localhost:3000/uploads/1727411642380.jpg\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:3000/api/admin/guru"
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nama\": \"Guru Profile 1\",\r\n    \"ttl\": \"Pati, 18 September 1992\",\r\n    \"jk\": \"laki laki\",\r\n    \"agama\": \"Islam\",\r\n    \"noTelp\": \"08xxxxxxxxxx\",\r\n    \"alamat\": \"Pati kota cuy\",\r\n    \"foto\": \"http://localhost:3000/uploads/1727411642380.jpg\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:3000/api/admin/guru/2"
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"kelasId\": 1,\r\n    \"semester\": \"satu / 1\",\r\n    \"nama\": \"Siswa Profile 1\",\r\n    \"ttl\": \"Pati, 18 September 1992\",\r\n    \"jk\": \"326759254362345\",\r\n    \"agama\": \"Islam\",\r\n    \"noTelp\": \"08xxxxxxxxxx\",\r\n    \"alamat\": \"Pati kota cuy\",\r\n    \"foto\": \"asdasd\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:3000/api/admin/guru/9"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Wali Murid",
+					"item": [
+						{
+							"name": "Get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:3000/api/admin/wali-murid"
+							},
+							"response": []
+						},
+						{
+							"name": "Insert",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"wali_murid1\",\r\n    \"password\": \"password12\",\r\n    \"nama\": \"Wali Murid Profile 1\",\r\n    \"noTelp\": \"08xxxxxxxxxx\",\r\n    \"alamat\": \"Pati kota cuy\",\r\n    \"email\": \"pakde@gmail.com\",\r\n    \"siswaId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:3000/api/admin/wali-murid"
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nama\": \"Wali Murid Profile 1\",\r\n    \"noTelp\": \"08xxxxxxxxxx\",\r\n    \"alamat\": \"Pati kota cuy\",\r\n    \"email\": \"pakde@gmail.com\",\r\n    \"siswaId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:3000/api/admin/wali-murid/4"
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"kelasId\": 1,\r\n    \"semester\": \"satu / 1\",\r\n    \"nama\": \"Siswa Profile 1\",\r\n    \"ttl\": \"Pati, 18 September 1992\",\r\n    \"jk\": \"326759254362345\",\r\n    \"agama\": \"Islam\",\r\n    \"noTelp\": \"08xxxxxxxxxx\",\r\n    \"alamat\": \"Pati kota cuy\",\r\n    \"foto\": \"asdasd\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:3000/api/admin/wali-murid/10"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Admin",
+					"item": [
+						{
+							"name": "Get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:3000/api/admin/get-admin"
+							},
+							"response": []
+						},
+						{
+							"name": "Insert",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"admin2\",\r\n    \"password\": \"password12\",\r\n    \"nama\": \"Admin Profile 2\",\r\n    \"ttl\": \"Pati, 18 September 1992\",\r\n    \"jk\": \"laki laki\",\r\n    \"agama\": \"Islam\",\r\n    \"noTelp\": \"08xxxxxxxxxx\",\r\n    \"alamat\": \"Pati kota cuy\",\r\n    \"foto\": \"http://localhost:3000/uploads/1727411642380.jpg\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:3000/api/admin/create-admin"
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nama\": \"Admin Profile 2\",\r\n    \"ttl\": \"Pati, 18 September 1992\",\r\n    \"jk\": \"laki laki\",\r\n    \"agama\": \"Islam\",\r\n    \"noTelp\": \"08xxxxxxxxxx\",\r\n    \"alamat\": \"Pati kota cuy\",\r\n    \"foto\": \"http://localhost:3000/uploads/1727411642380.jpg\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:3000/api/admin/update-admin/5"
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"kelasId\": 1,\r\n    \"semester\": \"satu / 1\",\r\n    \"nama\": \"Siswa Profile 1\",\r\n    \"ttl\": \"Pati, 18 September 1992\",\r\n    \"jk\": \"326759254362345\",\r\n    \"agama\": \"Islam\",\r\n    \"noTelp\": \"08xxxxxxxxxx\",\r\n    \"alamat\": \"Pati kota cuy\",\r\n    \"foto\": \"asdasd\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:3000/api/admin/delete-admin/5"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Absensi",
+					"item": [
+						{
+							"name": "Get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:3000/api/admin/absensi"
+							},
+							"response": []
+						},
+						{
+							"name": "Insert",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"keterangan\": \"hadir\",\r\n    \"userId\": 11\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:3000/api/admin/absensi"
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"keterangan\": \"hadir\",\r\n    \"userId\": 11\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:3000/api/admin/absensi/3"
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"keterangan\": \"hadir\",\r\n    \"userId\": 11\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:3000/api/admin/absensi/3"
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": {
+					"token": "{{token}}"
+				}
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Siswa",
+			"item": [
+				{
+					"name": "Profile",
+					"item": [
+						{
+							"name": "Get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:3000/api/siswa/profile"
+							},
+							"response": []
+						},
+						{
+							"name": "Insert",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"kelasId\": 1,\r\n    \"nis\": \"23592335253\",\r\n    \"semester\": \"satu / 1\",\r\n    \"nama\": \"Siswa Profile 1\",\r\n    \"ttl\": \"Pati, 18 September 1992\",\r\n    \"jk\": \"laki laki\",\r\n    \"agama\": \"Islam\",\r\n    \"noTelp\": \"08xxxxxxxxxx\",\r\n    \"alamat\": \"Pati kota cuy\",\r\n    \"foto\": \"http://localhost:3000/uploads/1727411642380.jpg\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:3000/api/siswa/profile"
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"kelasId\": 1,\r\n    \"nis\": 2147483647,\r\n    \"semester\": \"satu / 1\",\r\n    \"nama\": \"Siswa Profile 1\",\r\n    \"ttl\": \"Pati, 18 September 1992\",\r\n    \"jk\": \"laki laki\",\r\n    \"agama\": \"Islam\",\r\n    \"noTelp\": \"08xxxxxxxxxx\",\r\n    \"alamat\": \"Pati kota cuy\",\r\n   \"foto\": \"http://localhost:3000/uploads/1727411642380.jpg\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:3000/api/siswa/profile/update"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Absensi",
+					"item": [
+						{
+							"name": "Insert",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"keterangan\": \"hadir\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:3000/api/siswa/absensi"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Daftar Guru",
+					"item": [
+						{
+							"name": "Get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:3000/api/siswa/daftar-guru"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Nilai UTS",
+					"item": [
+						{
+							"name": "Get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:3000/api/siswa/nilai-uts"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Nilai UAS",
+					"item": [
+						{
+							"name": "Get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:3000/api/siswa/nilai-uas"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Jadwal Pelajaran",
+					"item": [
+						{
+							"name": "Get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:3000/api/siswa/jadwal-pelajaran"
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": {
+					"token": "{{token}}"
+				}
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Guru",
+			"item": [
+				{
+					"name": "Profile",
+					"item": [
+						{
+							"name": "Get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:3000/api/guru/profile"
+							},
+							"response": []
+						},
+						{
+							"name": "Insert",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nig\": \"7234235235\",\r\n    \"nama\": \"Guru Profile 1\",\r\n    \"ttl\": \"Pati, 18 September 1992\",\r\n    \"jk\": \"laki laki\",\r\n    \"agama\": \"Islam\",\r\n    \"noTelp\": \"08xxxxxxxxxx\",\r\n    \"alamat\": \"Pati kota cuy\",\r\n    \"foto\": \"http://localhost:3000/uploads/1727410644029.jpg\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:3000/api/guru/profile"
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nama\": \"Guru Profile 1\",\r\n    \"ttl\": \"Pati, 18 September 1992\",\r\n    \"jk\": \"laki laki\",\r\n    \"agama\": \"Islam\",\r\n    \"noTelp\": \"08xxxxxxxxxx\",\r\n    \"alamat\": \"Pati kota cuy\",\r\n    \"foto\": \"http://localhost:3000/uploads/1727410644029.jpg\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:3000/api/guru/profile/update"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Nilai UTS",
+					"item": [
+						{
+							"name": "Get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:3000/api/guru/nilai-uts"
+							},
+							"response": []
+						},
+						{
+							"name": "Insert",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nilai\": 70.32,\r\n    \"siswaId\": 1,\r\n    \"matpelId\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:3000/api/guru/nilai-uts"
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nilai\": 70.42,\r\n    \"siswaId\": 1,\r\n    \"matpelId\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:3000/api/guru/nilai-uts/1"
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": "http://localhost:3000/api/guru/nilai-uts/2"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Nilai UAS",
+					"item": [
+						{
+							"name": "Get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:3000/api/guru/nilai-uas"
+							},
+							"response": []
+						},
+						{
+							"name": "Insert",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nilai\": 70.32,\r\n    \"siswaId\": 1,\r\n    \"matpelId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:3000/api/guru/nilai-uas"
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nilai\": 70.42,\r\n    \"siswaId\": 1,\r\n    \"matpelId\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:3000/api/guru/nilai-uas/1"
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": "http://localhost:3000/api/guru/nilai-uas/2"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Jadwal Mengajar",
+					"item": [
+						{
+							"name": "Get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:3000/api/guru/jadwal-mengajar"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Siswa",
+					"item": [
+						{
+							"name": "Get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:3000/api/guru/siswa"
+							},
+							"response": []
+						},
+						{
+							"name": "Get Single",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:3000/api/guru/siswa/1"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Kelas",
+					"item": [
+						{
+							"name": "Get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:3000/api/guru/kelas"
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": {
+					"token": "{{token}}"
+				}
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Wali Murid",
+			"item": [
+				{
+					"name": "Profile",
+					"item": [
+						{
+							"name": "Get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:3000/api/wali-murid/profile"
+							},
+							"response": []
+						},
+						{
+							"name": "Insert",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nama\": \"Wali Murid Profile 1\",\r\n    \"noTelp\": \"08xxxxxxxxxx\",\r\n    \"alamat\": \"Pati kota cuy\",\r\n    \"email\": \"pakde@gmail.com\",\r\n    \"siswaId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:3000/api/wali-murid/profile"
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nama\": \"Wali Murid Profile 1\",\r\n    \"noTelp\": \"08xxxxxxxxxx\",\r\n    \"alamat\": \"Pati kota cuy\",\r\n    \"email\": \"pakde@gmail.com\",\r\n    \"siswaId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:3000/api/wali-murid/profile/update"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Jadwal Pelajaran",
+					"item": [
+						{
+							"name": "Get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:3000/api/wali-murid/jadwal-pelajaran"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Nilai UTS",
+					"item": [
+						{
+							"name": "Get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:3000/api/wali-murid/nilai-uts"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Nilai UAS",
+					"item": [
+						{
+							"name": "Get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:3000/api/wali-murid/nilai-uas"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Absensi",
+					"item": [
+						{
+							"name": "Get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:3000/api/wali-murid/absensi"
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": {
+					"token": "{{token}}"
+				}
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Uploads",
+			"item": [
+				{
+					"name": "Get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/uploads/1727410644029.jpg"
+					},
+					"response": []
+				},
+				{
+					"name": "Insert",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "foto",
+									"type": "file",
+									"src": "/D:/Digital Art/channels4_profile.jpg"
+								}
+							]
+						},
+						"url": "http://localhost:3000/api/uploads"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "foto",
+									"type": "file",
+									"src": "/D:/Digital Art/channels4_profile.jpg"
+								}
+							]
+						},
+						"url": "http://localhost:3000/api/uploads/1727410336711.jpg"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

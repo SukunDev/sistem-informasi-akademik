@@ -19,9 +19,36 @@ exports.getSiswa = async (req, res) => {
     });
     return res.status(200).json({ satus: true, data: siswa });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ status: false, message: "terjadi kesalahan pada server" });
+    return res.status(500).json({ status: false, message: error.message });
+  }
+};
+
+exports.getSiswaSingle = async (req, res) => {
+  try {
+    const siswaId = req.params.id;
+    const siswa = await Siswa.findOne({
+      where: { id: siswaId },
+      attributes: { exclude: ["kelasId", "userId"] },
+      include: [
+        {
+          model: Kelas,
+          as: "kelas",
+        },
+        {
+          model: User,
+          as: "user",
+          attributes: { exclude: ["password"] },
+        },
+      ],
+    });
+    if (!siswa) {
+      return res
+        .status(400)
+        .json({ status: false, message: "tidak dapat menemukan siswa" });
+    }
+    return res.status(200).json({ satus: true, data: siswa });
+  } catch (error) {
+    return res.status(500).json({ status: false, message: error.message });
   }
 };
 
@@ -50,9 +77,7 @@ exports.getSiswaProfile = async (req, res) => {
     }
     return res.status(200).json({ satus: true, data: siswa });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ status: false, message: "terjadi kesalahan pada server" });
+    return res.status(500).json({ status: false, message: error.message });
   }
 };
 
@@ -93,9 +118,23 @@ exports.createSiswaProfile = async (req, res) => {
         .status(400)
         .json({ status: false, message: "tidak memiliki akses" });
     }
-    const { semester, nama, ttl, jk, agama, noTelp, alamat, foto, kelasId } =
-      req.body;
-    if (!nama) {
+    const {
+      nis,
+      semester,
+      nama,
+      ttl,
+      jk,
+      agama,
+      noTelp,
+      alamat,
+      foto,
+      kelasId,
+    } = req.body;
+    if (!nis) {
+      return res
+        .status(400)
+        .json({ status: false, message: "field 'nis' tidak boleh kosong" });
+    } else if (!nama) {
       return res
         .status(400)
         .json({ status: false, message: "field 'nama' tidak boleh kosong" });
@@ -142,6 +181,7 @@ exports.createSiswaProfile = async (req, res) => {
     }
     const createSiswa = await Siswa.create({
       userId: userId,
+      nis: nis,
       kelasId: kelasId,
       semester: semester,
       nama: nama,
@@ -158,9 +198,7 @@ exports.createSiswaProfile = async (req, res) => {
       data: createSiswa,
     });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ status: false, message: "terjadi kesalahan pada server" });
+    return res.status(500).json({ status: false, message: error.message });
   }
 };
 
@@ -189,9 +227,23 @@ exports.updateSiswaProfile = async (req, res) => {
         .status(400)
         .json({ status: false, message: "tidak memiliki akses" });
     }
-    const { semester, nama, ttl, jk, agama, noTelp, alamat, foto, kelasId } =
-      req.body;
-    if (!nama) {
+    const {
+      nis,
+      semester,
+      nama,
+      ttl,
+      jk,
+      agama,
+      noTelp,
+      alamat,
+      foto,
+      kelasId,
+    } = req.body;
+    if (!nis) {
+      return res
+        .status(400)
+        .json({ status: false, message: "field 'nis' tidak boleh kosong" });
+    } else if (!nama) {
       return res
         .status(400)
         .json({ status: false, message: "field 'nama' tidak boleh kosong" });
@@ -238,6 +290,7 @@ exports.updateSiswaProfile = async (req, res) => {
     }
     const updateSiswa = await siswa.update({
       kelasId: kelasId,
+      nis: nis,
       semester: semester,
       nama: nama,
       ttl: ttl,
@@ -253,9 +306,7 @@ exports.updateSiswaProfile = async (req, res) => {
       data: updateSiswa,
     });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ status: false, message: "terjadi kesalahan pada server" });
+    return res.status(500).json({ status: false, message: error.message });
   }
 };
 
@@ -303,8 +354,6 @@ exports.deleteSiswa = async (req, res) => {
       .status(200)
       .json({ status: true, message: "User dan profil berhasil dihapus" });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ status: false, message: "Terjadi kesalahan pada server" });
+    return res.status(500).json({ status: false, message: error.message });
   }
 };

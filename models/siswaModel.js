@@ -8,6 +8,10 @@ const NilaiUas = require("./nilaiUasModel");
 const Siswa = sequelize.define(
   "Siswa",
   {
+    nis: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
     semester: {
       type: DataTypes.STRING(10),
       allowNull: false,

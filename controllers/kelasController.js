@@ -1,13 +1,20 @@
 const Kelas = require("../models/kelasModel");
+const Siswa = require("../models/siswaModel");
 
 exports.getKelas = async (req, res) => {
   try {
-    const kelas = await Kelas.findAll();
+    const kelas = await Kelas.findAll({
+      include: [
+        {
+          model: Siswa,
+          as: "siswa",
+          attributes: { exclude: ["kelasId", "userId"] },
+        },
+      ],
+    });
     return res.status(200).json({ satus: true, data: kelas });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ status: false, message: "terjadi kesalahan pada server" });
+    return res.status(500).json({ status: false, message: error.message });
   }
 };
 
@@ -36,9 +43,7 @@ exports.createKelas = async (req, res) => {
       .status(201)
       .json({ satus: true, message: "kelas berhasil di buat", data: kelas });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ status: false, message: "terjadi kesalahan pada server" });
+    return res.status(500).json({ status: false, message: error.message });
   }
 };
 
@@ -69,9 +74,7 @@ exports.updateKelas = async (req, res) => {
       .status(201)
       .json({ satus: true, message: "kelas berhasil di ubah", data: kelas });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ status: false, message: "terjadi kesalahan pada server" });
+    return res.status(500).json({ status: false, message: error.message });
   }
 };
 
@@ -96,8 +99,6 @@ exports.deleteKelas = async (req, res) => {
       .status(201)
       .json({ satus: true, message: "kelas berhasil di hapus" });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ status: false, message: "terjadi kesalahan pada server" });
+    return res.status(500).json({ status: false, message: error.message });
   }
 };

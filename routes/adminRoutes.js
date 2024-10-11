@@ -28,6 +28,11 @@ router.post("/wali-murid", waliMuridController.createWaliMuridProfile);
 router.post("/wali-murid/:id", waliMuridController.updateWaliMuridProfile);
 router.delete("/wali-murid/:id", waliMuridController.deleteWaliMurid);
 
+router.get("/get-admin", adminController.getAdmins);
+router.post("/create-admin", adminController.adminCreateAdminProfile);
+router.post("/update-admin/:id", adminController.adminUpdateAdminProfile);
+router.delete("/delete-admin/:id", adminController.adminDeleteAdmin);
+
 router.get("/kelas", kelasController.getKelas);
 router.post("/kelas", kelasController.createKelas);
 router.post("/kelas/:id", kelasController.updateKelas);

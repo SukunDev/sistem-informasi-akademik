@@ -15,6 +15,9 @@ router.get("/nilai-uas", nilaiUasController.getSiswaNilaiUas);
 
 router.get("/absensi", absenController.getSiswaAbsen);
 
-router.get("/jadwal-pelajaran", jadwalPelajaranController.getJadwalPelajaran);
+router.get(
+  "/jadwal-pelajaran",
+  jadwalPelajaranController.getJadwalPelajaranSiswa
+);
 
 module.exports = router;

@@ -225,6 +225,27 @@
 							"response": []
 						},
 						{
+							"name": "Get Single",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:3000/api/admin/kelas/1"
+							},
+							"response": []
+						},
+						{
 							"name": "Insert",
 							"request": {
 								"method": "POST",
@@ -349,7 +370,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"username\": \"siswa1\",\r\n    \"password\": \"password12\",\r\n    \"kelasId\": 1,\r\n    \"semester\": \"satu / 1\",\r\n    \"nama\": \"Siswa Profile 1\",\r\n    \"ttl\": \"Pati, 18 September 1992\",\r\n    \"jk\": \"laki laki\",\r\n    \"agama\": \"Islam\",\r\n    \"noTelp\": \"08xxxxxxxxxx\",\r\n    \"alamat\": \"Pati kota cuy\",\r\n    \"foto\": \"http://localhost:3000/uploads/1727411642380.jpg\"\r\n}",
+									"raw": "{\r\n    \"username\": \"siswa1\",\r\n    \"password\": \"password12\",\r\n    \"nis\":\"8276432385205\",\r\n    \"kelasId\": 1,\r\n    \"semester\": \"satu / 1\",\r\n    \"nama\": \"Siswa Profile 1\",\r\n    \"ttl\": \"Pati, 18 September 1992\",\r\n    \"jk\": \"laki laki\",\r\n    \"agama\": \"Islam\",\r\n    \"noTelp\": \"08xxxxxxxxxx\",\r\n    \"alamat\": \"Pati kota cuy\",\r\n    \"foto\": \"http://localhost:3000/uploads/1727411642380.jpg\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -392,7 +413,7 @@
 										}
 									}
 								},
-								"url": "http://localhost:3000/api/admin/siswa/2"
+								"url": "http://localhost:3000/api/admin/siswa/3"
 							},
 							"response": []
 						}
@@ -423,7 +444,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"username\": \"guru1\",\r\n    \"password\": \"password12\",\r\n    \"nama\": \"Guru Profile 1\",\r\n    \"ttl\": \"Pati, 18 September 1992\",\r\n    \"jk\": \"326759254362345\",\r\n    \"agama\": \"Islam\",\r\n    \"noTelp\": \"08xxxxxxxxxx\",\r\n    \"alamat\": \"Pati kota cuy\",\r\n    \"foto\": \"http://localhost:3000/uploads/1727411642380.jpg\"\r\n}",
+									"raw": "{\r\n    \"username\": \"guru1\",\r\n    \"password\": \"password12\",\r\n    \"nig\": \"826743925325\",\r\n    \"nama\": \"Guru Profile 1\",\r\n    \"ttl\": \"Pati, 18 September 1992\",\r\n    \"jk\": \"326759254362345\",\r\n    \"agama\": \"Islam\",\r\n    \"noTelp\": \"08xxxxxxxxxx\",\r\n    \"alamat\": \"Pati kota cuy\",\r\n    \"foto\": \"http://localhost:3000/uploads/1727411642380.jpg\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -491,7 +512,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"username\": \"wali_murid1\",\r\n    \"password\": \"password12\",\r\n    \"nama\": \"Wali Murid Profile 1\",\r\n    \"noTelp\": \"08xxxxxxxxxx\",\r\n    \"alamat\": \"Pati kota cuy\",\r\n    \"email\": \"pakde@gmail.com\",\r\n    \"siswaId\": 1\r\n}",
+									"raw": "{\r\n    \"username\": \"wali_murid1\",\r\n    \"password\": \"password12\",\r\n    \"nama\": \"Wali Murid Profile 1\",\r\n    \"ttl\":\"Pati\",\r\n    \"noTelp\": \"08xxxxxxxxxx\",\r\n    \"alamat\": \"Pati kota cuy\",\r\n    \"email\": \"pakde@gmail.com\",\r\n    \"siswaId\": 2\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1087,6 +1108,15 @@
 								"url": "http://localhost:3000/api/guru/kelas"
 							},
 							"response": []
+						},
+						{
+							"name": "Get Single",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:3000/api/guru/kelas/1"
+							},
+							"response": []
 						}
 					]
 				}
@@ -1142,7 +1172,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"nama\": \"Wali Murid Profile 1\",\r\n    \"noTelp\": \"08xxxxxxxxxx\",\r\n    \"alamat\": \"Pati kota cuy\",\r\n    \"email\": \"pakde@gmail.com\",\r\n    \"siswaId\": 1\r\n}",
+									"raw": "{\r\n    \"nama\": \"Wali Murid Profile 1\",\r\n    \"noTelp\": \"08xxxxxxxxxx\",\r\n    \"ttl\": \"Pati, 18 agustus 1999\",\r\n    \"alamat\": \"Pati kota cuy\",\r\n    \"email\": \"pakde@gmail.com\",\r\n    \"siswaId\": 1\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"

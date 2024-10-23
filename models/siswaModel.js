@@ -9,7 +9,7 @@ const Siswa = sequelize.define(
   "Siswa",
   {
     nis: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     semester: {

@@ -8,6 +8,10 @@ const WaliMurid = sequelize.define(
       type: DataTypes.STRING(50),
       allowNull: false,
     },
+    ttl: {
+      type: DataTypes.STRING(30),
+      allowNull: false,
+    },
     noTelp: {
       type: DataTypes.STRING(20),
       allowNull: false,

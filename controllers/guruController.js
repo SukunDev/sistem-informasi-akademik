@@ -40,6 +40,40 @@ exports.getGuruProfile = async (req, res) => {
 
 exports.createGuruProfile = async (req, res) => {
   try {
+    const { nig, nama, ttl, jk, agama, noTelp, alamat, foto } = req.body;
+    if (!nig) {
+      return res
+        .status(400)
+        .json({ status: false, message: "field 'nig' tidak boleh kosong" });
+    } else if (!nama) {
+      return res
+        .status(400)
+        .json({ status: false, message: "field 'nama' tidak boleh kosong" });
+    } else if (!ttl) {
+      return res
+        .status(400)
+        .json({ status: false, message: "field 'ttl' tidak boleh kosong" });
+    } else if (!jk) {
+      return res
+        .status(400)
+        .json({ status: false, message: "field 'jk' tidak boleh kosong" });
+    } else if (!agama) {
+      return res
+        .status(400)
+        .json({ status: false, message: "field 'agama' tidak boleh kosong" });
+    } else if (!noTelp) {
+      return res
+        .status(400)
+        .json({ status: false, message: "field 'noTelp' tidak boleh kosong" });
+    } else if (!alamat) {
+      return res
+        .status(400)
+        .json({ status: false, message: "field 'alamat' tidak boleh kosong" });
+    } else if (!foto) {
+      return res
+        .status(400)
+        .json({ status: false, message: "field 'foto' tidak boleh kosong" });
+    }
     const user = req.user;
     let userId;
     if (user.hakAkses == "guru") {
@@ -75,42 +109,6 @@ exports.createGuruProfile = async (req, res) => {
         .status(400)
         .json({ status: false, message: "tidak memiliki akses" });
     }
-
-    const { nig, nama, ttl, jk, agama, noTelp, alamat, foto } = req.body;
-    if (!nig) {
-      return res
-        .status(400)
-        .json({ status: false, message: "field 'nig' tidak boleh kosong" });
-    } else if (!nama) {
-      return res
-        .status(400)
-        .json({ status: false, message: "field 'nama' tidak boleh kosong" });
-    } else if (!ttl) {
-      return res
-        .status(400)
-        .json({ status: false, message: "field 'ttl' tidak boleh kosong" });
-    } else if (!jk) {
-      return res
-        .status(400)
-        .json({ status: false, message: "field 'jk' tidak boleh kosong" });
-    } else if (!agama) {
-      return res
-        .status(400)
-        .json({ status: false, message: "field 'agama' tidak boleh kosong" });
-    } else if (!noTelp) {
-      return res
-        .status(400)
-        .json({ status: false, message: "field 'noTelp' tidak boleh kosong" });
-    } else if (!alamat) {
-      return res
-        .status(400)
-        .json({ status: false, message: "field 'alamat' tidak boleh kosong" });
-    } else if (!foto) {
-      return res
-        .status(400)
-        .json({ status: false, message: "field 'foto' tidak boleh kosong" });
-    }
-
     const guru = await Guru.findOne({ where: { userId: userId } });
     if (guru) {
       return res.status(400).json({
@@ -141,30 +139,6 @@ exports.createGuruProfile = async (req, res) => {
 
 exports.updateGuruProfile = async (req, res) => {
   try {
-    const user = req.user;
-    let userId;
-    if (user.hakAkses == "guru") {
-      userId = user.id;
-    } else if (user.hakAkses == "admin") {
-      const queryId = req.params.id;
-      if (!queryId) {
-        return res
-          .status(400)
-          .json({ status: false, message: "Query 'id' tidak boleh kosong" });
-      }
-      const user = await User.findOne({ where: { id: queryId } });
-      if (!user) {
-        return res
-          .status(400)
-          .json({ status: false, message: "tidak dapat menemukan user" });
-      }
-      userId = user.id;
-    } else {
-      return res
-        .status(400)
-        .json({ status: false, message: "tidak memiliki akses" });
-    }
-
     const { nig, nama, ttl, jk, agama, noTelp, alamat, foto } = req.body;
     if (!nig) {
       return res
@@ -199,7 +173,29 @@ exports.updateGuruProfile = async (req, res) => {
         .status(400)
         .json({ status: false, message: "field 'foto' tidak boleh kosong" });
     }
-
+    const user = req.user;
+    let userId;
+    if (user.hakAkses == "guru") {
+      userId = user.id;
+    } else if (user.hakAkses == "admin") {
+      const queryId = req.params.id;
+      if (!queryId) {
+        return res
+          .status(400)
+          .json({ status: false, message: "Query 'id' tidak boleh kosong" });
+      }
+      const user = await User.findOne({ where: { id: queryId } });
+      if (!user) {
+        return res
+          .status(400)
+          .json({ status: false, message: "tidak dapat menemukan user" });
+      }
+      userId = user.id;
+    } else {
+      return res
+        .status(400)
+        .json({ status: false, message: "tidak memiliki akses" });
+    }
     const guru = await Guru.findOne({ where: { userId: userId } });
     if (!guru) {
       return res.status(400).json({

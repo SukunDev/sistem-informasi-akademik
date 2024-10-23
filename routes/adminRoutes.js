@@ -34,6 +34,7 @@ router.post("/update-admin/:id", adminController.adminUpdateAdminProfile);
 router.delete("/delete-admin/:id", adminController.adminDeleteAdmin);
 
 router.get("/kelas", kelasController.getKelas);
+router.get("/kelas/:id", kelasController.getSingleKelas);
 router.post("/kelas", kelasController.createKelas);
 router.post("/kelas/:id", kelasController.updateKelas);
 router.delete("/kelas/:id", kelasController.deleteKelas);

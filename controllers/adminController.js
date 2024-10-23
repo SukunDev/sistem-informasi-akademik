@@ -176,6 +176,36 @@ exports.updateAdminProfile = async (req, res) => {
 
 exports.adminCreateAdminProfile = async (req, res) => {
   try {
+    const { nama, ttl, jk, agama, noTelp, alamat, foto } = req.body;
+    if (!nama) {
+      return res
+        .status(400)
+        .json({ status: false, message: "field 'nama' tidak boleh kosong" });
+    } else if (!ttl) {
+      return res
+        .status(400)
+        .json({ status: false, message: "field 'ttl' tidak boleh kosong" });
+    } else if (!jk) {
+      return res
+        .status(400)
+        .json({ status: false, message: "field 'jk' tidak boleh kosong" });
+    } else if (!agama) {
+      return res
+        .status(400)
+        .json({ status: false, message: "field 'agama' tidak boleh kosong" });
+    } else if (!noTelp) {
+      return res
+        .status(400)
+        .json({ status: false, message: "field 'noTelp' tidak boleh kosong" });
+    } else if (!alamat) {
+      return res
+        .status(400)
+        .json({ status: false, message: "field 'alamat' tidak boleh kosong" });
+    } else if (!foto) {
+      return res
+        .status(400)
+        .json({ status: false, message: "field 'foto' tidak boleh kosong" });
+    }
     let userId;
     const user = req.user;
     if (user.hakAkses == "admin") {
@@ -209,36 +239,6 @@ exports.adminCreateAdminProfile = async (req, res) => {
         .status(400)
         .json({ status: false, message: "tidak memiliki akses" });
     }
-    const { nama, ttl, jk, agama, noTelp, alamat, foto } = req.body;
-    if (!nama) {
-      return res
-        .status(400)
-        .json({ status: false, message: "field 'nama' tidak boleh kosong" });
-    } else if (!ttl) {
-      return res
-        .status(400)
-        .json({ status: false, message: "field 'ttl' tidak boleh kosong" });
-    } else if (!jk) {
-      return res
-        .status(400)
-        .json({ status: false, message: "field 'jk' tidak boleh kosong" });
-    } else if (!agama) {
-      return res
-        .status(400)
-        .json({ status: false, message: "field 'agama' tidak boleh kosong" });
-    } else if (!noTelp) {
-      return res
-        .status(400)
-        .json({ status: false, message: "field 'noTelp' tidak boleh kosong" });
-    } else if (!alamat) {
-      return res
-        .status(400)
-        .json({ status: false, message: "field 'alamat' tidak boleh kosong" });
-    } else if (!foto) {
-      return res
-        .status(400)
-        .json({ status: false, message: "field 'foto' tidak boleh kosong" });
-    }
     const admin = await Admin.findOne({ where: { userId: userId } });
     if (admin) {
       return res.status(400).json({
@@ -268,27 +268,6 @@ exports.adminCreateAdminProfile = async (req, res) => {
 
 exports.adminUpdateAdminProfile = async (req, res) => {
   try {
-    let userId;
-    const user = req.user;
-    if (user.hakAkses == "admin") {
-      const queryId = req.params.id;
-      if (!queryId) {
-        return res
-          .status(400)
-          .json({ status: false, message: "Query 'id' tidak boleh kosong" });
-      }
-      const user = await User.findOne({ where: { id: queryId } });
-      if (!user) {
-        return res
-          .status(400)
-          .json({ status: false, message: "tidak dapat menemukan user" });
-      }
-      userId = user.id;
-    } else {
-      return res
-        .status(400)
-        .json({ status: false, message: "tidak memiliki akses" });
-    }
     const { nama, ttl, jk, agama, noTelp, alamat, foto } = req.body;
     if (!nama) {
       return res
@@ -318,6 +297,27 @@ exports.adminUpdateAdminProfile = async (req, res) => {
       return res
         .status(400)
         .json({ status: false, message: "field 'foto' tidak boleh kosong" });
+    }
+    let userId;
+    const user = req.user;
+    if (user.hakAkses == "admin") {
+      const queryId = req.params.id;
+      if (!queryId) {
+        return res
+          .status(400)
+          .json({ status: false, message: "Query 'id' tidak boleh kosong" });
+      }
+      const user = await User.findOne({ where: { id: queryId } });
+      if (!user) {
+        return res
+          .status(400)
+          .json({ status: false, message: "tidak dapat menemukan user" });
+      }
+      userId = user.id;
+    } else {
+      return res
+        .status(400)
+        .json({ status: false, message: "tidak memiliki akses" });
     }
     const admin = await Admin.findOne({ where: { userId: userId } });
     if (!admin) {

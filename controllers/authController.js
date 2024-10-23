@@ -3,6 +3,10 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const jwtConfig = require("../config/jwtConfig");
 const { ROLE } = require("../config/role");
+const Guru = require("../models/guruModel");
+const WaliMurid = require("../models/waliMuridModel");
+const Admin = require("../models/adminModel");
+const Siswa = require("../models/siswaModel");
 
 exports.login = async (req, res) => {
   try {
@@ -29,6 +33,37 @@ exports.login = async (req, res) => {
         .json({ status: false, message: "role tidak cocok" });
     }
 
+    let profile = null;
+    switch (role) {
+      case "siswa":
+        profile = await Siswa.findOne({
+          where: { userId: user.id },
+          attributes: { exclude: ["userId"] },
+        });
+        break;
+      case "guru":
+        profile = await Guru.findOne({
+          where: { userId: user.id },
+          attributes: { exclude: ["userId"] },
+        });
+        break;
+      case "wali murid":
+        profile = await WaliMurid.findOne({
+          where: { userId: user.id },
+          attributes: { exclude: ["userId"] },
+        });
+      case "admin":
+        profile = await Admin.findOne({
+          where: { userId: user.id },
+          attributes: { exclude: ["userId"] },
+        });
+        break;
+
+      default:
+        profile = null;
+        break;
+    }
+
     const token = jwt.sign(
       { id: user.id, username: user.username },
       jwtConfig.secret,
@@ -42,6 +77,7 @@ exports.login = async (req, res) => {
         id: user.id,
         username: user.username,
         hakAkses: user.hakAkses,
+        profile: profile,
         createdAt: user.createdAt,
         updatedAt: user.updatedAt,
       },

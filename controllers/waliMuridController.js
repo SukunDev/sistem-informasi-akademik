@@ -50,6 +50,32 @@ exports.getWaliMuridProfile = async (req, res) => {
 
 exports.createWaliMuridProfile = async (req, res) => {
   try {
+    const { nama, noTelp, alamat, ttl, email, siswaId } = req.body;
+    if (!nama) {
+      return res
+        .status(400)
+        .json({ status: false, message: "field 'nama' tidak boleh kosong" });
+    } else if (!ttl) {
+      return res
+        .status(400)
+        .json({ status: false, message: "field 'ttl' tidak boleh kosong" });
+    } else if (!noTelp) {
+      return res
+        .status(400)
+        .json({ status: false, message: "field 'noTelp' tidak boleh kosong" });
+    } else if (!alamat) {
+      return res
+        .status(400)
+        .json({ status: false, message: "field 'alamat' tidak boleh kosong" });
+    } else if (!email) {
+      return res
+        .status(400)
+        .json({ status: false, message: "field 'email' tidak boleh kosong" });
+    } else if (!siswaId) {
+      return res
+        .status(400)
+        .json({ status: false, message: "field 'siswaId' tidak boleh kosong" });
+    }
     const user = req.user;
     let userId;
     if (user.hakAkses == "wali murid") {
@@ -85,11 +111,43 @@ exports.createWaliMuridProfile = async (req, res) => {
         .status(400)
         .json({ status: false, message: "tidak memiliki akses" });
     }
-    const { nama, noTelp, alamat, email, siswaId } = req.body;
+    const wali = await WaliMurid.findOne({ where: { userId: userId } });
+    if (wali) {
+      return res.status(400).json({
+        status: false,
+        message: "profile wali sudah pernah di buat",
+      });
+    }
+    const createWaliMurid = await WaliMurid.create({
+      userId: userId,
+      siswaId: siswaId,
+      nama: nama,
+      ttl: ttl,
+      noTelp: noTelp,
+      alamat: alamat,
+      email: email,
+    });
+    return res.status(201).json({
+      status: true,
+      message: "berhasil membuat profile wali",
+      data: createWaliMurid,
+    });
+  } catch (error) {
+    return res.status(500).json({ status: false, message: error.message });
+  }
+};
+
+exports.updateWaliMuridProfile = async (req, res) => {
+  try {
+    const { nama, noTelp, alamat, ttl, email, siswaId } = req.body;
     if (!nama) {
       return res
         .status(400)
         .json({ status: false, message: "field 'nama' tidak boleh kosong" });
+    } else if (!ttl) {
+      return res
+        .status(400)
+        .json({ status: false, message: "field 'ttl' tidak boleh kosong" });
     } else if (!noTelp) {
       return res
         .status(400)
@@ -107,33 +165,6 @@ exports.createWaliMuridProfile = async (req, res) => {
         .status(400)
         .json({ status: false, message: "field 'siswaId' tidak boleh kosong" });
     }
-    const wali = await WaliMurid.findOne({ where: { userId: userId } });
-    if (wali) {
-      return res.status(400).json({
-        status: false,
-        message: "profile wali sudah pernah di buat",
-      });
-    }
-    const createWaliMurid = await WaliMurid.create({
-      userId: userId,
-      siswaId: siswaId,
-      nama: nama,
-      noTelp: noTelp,
-      alamat: alamat,
-      email: email,
-    });
-    return res.status(201).json({
-      status: true,
-      message: "berhasil membuat profile wali",
-      data: createWaliMurid,
-    });
-  } catch (error) {
-    return res.status(500).json({ status: false, message: error.message });
-  }
-};
-
-exports.updateWaliMuridProfile = async (req, res) => {
-  try {
     const user = req.user;
     let userId;
     if (user.hakAkses == "wali murid") {
@@ -157,28 +188,6 @@ exports.updateWaliMuridProfile = async (req, res) => {
         .status(400)
         .json({ status: false, message: "tidak memiliki akses" });
     }
-    const { nama, noTelp, alamat, email, siswaId } = req.body;
-    if (!nama) {
-      return res
-        .status(400)
-        .json({ status: false, message: "field 'nama' tidak boleh kosong" });
-    } else if (!noTelp) {
-      return res
-        .status(400)
-        .json({ status: false, message: "field 'noTelp' tidak boleh kosong" });
-    } else if (!alamat) {
-      return res
-        .status(400)
-        .json({ status: false, message: "field 'alamat' tidak boleh kosong" });
-    } else if (!email) {
-      return res
-        .status(400)
-        .json({ status: false, message: "field 'email' tidak boleh kosong" });
-    } else if (!siswaId) {
-      return res
-        .status(400)
-        .json({ status: false, message: "field 'siswaId' tidak boleh kosong" });
-    }
     const wali = await WaliMurid.findOne({ where: { userId: userId } });
     if (!wali) {
       return res.status(400).json({
@@ -190,6 +199,7 @@ exports.updateWaliMuridProfile = async (req, res) => {
       siswaId: siswaId,
       nama: nama,
       noTelp: noTelp,
+      ttl: ttl,
       alamat: alamat,
       email: email,
     });

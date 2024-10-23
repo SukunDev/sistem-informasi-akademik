@@ -83,6 +83,60 @@ exports.getSiswaProfile = async (req, res) => {
 
 exports.createSiswaProfile = async (req, res) => {
   try {
+    const {
+      nis,
+      semester,
+      nama,
+      ttl,
+      jk,
+      agama,
+      noTelp,
+      alamat,
+      foto,
+      kelasId,
+    } = req.body;
+    if (!nis) {
+      return res
+        .status(400)
+        .json({ status: false, message: "field 'nis' tidak boleh kosong" });
+    } else if (!nama) {
+      return res
+        .status(400)
+        .json({ status: false, message: "field 'nama' tidak boleh kosong" });
+    } else if (!semester) {
+      return res.status(400).json({
+        status: false,
+        message: "field 'semester' tidak boleh kosong",
+      });
+    } else if (!ttl) {
+      return res
+        .status(400)
+        .json({ status: false, message: "field 'ttl' tidak boleh kosong" });
+    } else if (!jk) {
+      return res
+        .status(400)
+        .json({ status: false, message: "field 'jk' tidak boleh kosong" });
+    } else if (!agama) {
+      return res
+        .status(400)
+        .json({ status: false, message: "field 'agama' tidak boleh kosong" });
+    } else if (!noTelp) {
+      return res
+        .status(400)
+        .json({ status: false, message: "field 'noTelp' tidak boleh kosong" });
+    } else if (!alamat) {
+      return res
+        .status(400)
+        .json({ status: false, message: "field 'alamat' tidak boleh kosong" });
+    } else if (!foto) {
+      return res
+        .status(400)
+        .json({ status: false, message: "field 'foto' tidak boleh kosong" });
+    } else if (!kelasId) {
+      return res
+        .status(400)
+        .json({ status: false, message: "field 'kelasId' tidak boleh kosong" });
+    }
     const user = req.user;
     let userId;
     if (user.hakAkses == "siswa") {
@@ -118,60 +172,6 @@ exports.createSiswaProfile = async (req, res) => {
         .status(400)
         .json({ status: false, message: "tidak memiliki akses" });
     }
-    const {
-      nis,
-      semester,
-      nama,
-      ttl,
-      jk,
-      agama,
-      noTelp,
-      alamat,
-      foto,
-      kelasId,
-    } = req.body;
-    if (!nis) {
-      return res
-        .status(400)
-        .json({ status: false, message: "field 'nis' tidak boleh kosong" });
-    } else if (!nama) {
-      return res
-        .status(400)
-        .json({ status: false, message: "field 'nama' tidak boleh kosong" });
-    } else if (!semester) {
-      return res.status(400).json({
-        status: false,
-        message: "field 'semester' tidak boleh kosong",
-      });
-    } else if (!ttl) {
-      return res
-        .status(400)
-        .json({ status: false, message: "field 'ttl' tidak boleh kosong" });
-    } else if (!jk) {
-      return res
-        .status(400)
-        .json({ status: false, message: "field 'jk' tidak boleh kosong" });
-    } else if (!agama) {
-      return res
-        .status(400)
-        .json({ status: false, message: "field 'agama' tidak boleh kosong" });
-    } else if (!noTelp) {
-      return res
-        .status(400)
-        .json({ status: false, message: "field 'noTelp' tidak boleh kosong" });
-    } else if (!alamat) {
-      return res
-        .status(400)
-        .json({ status: false, message: "field 'alamat' tidak boleh kosong" });
-    } else if (!foto) {
-      return res
-        .status(400)
-        .json({ status: false, message: "field 'foto' tidak boleh kosong" });
-    } else if (!kelasId) {
-      return res
-        .status(400)
-        .json({ status: false, message: "field 'kelasId' tidak boleh kosong" });
-    }
     const siswa = await Siswa.findOne({ where: { userId: userId } });
     if (siswa) {
       return res.status(400).json({
@@ -204,29 +204,6 @@ exports.createSiswaProfile = async (req, res) => {
 
 exports.updateSiswaProfile = async (req, res) => {
   try {
-    const user = req.user;
-    let userId;
-    if (user.hakAkses == "siswa") {
-      userId = user.id;
-    } else if (user.hakAkses == "admin") {
-      const queryId = req.params.id;
-      if (!queryId) {
-        return res
-          .status(400)
-          .json({ status: false, message: "Query 'id' tidak boleh kosong" });
-      }
-      const user = await User.findOne({ where: { id: queryId } });
-      if (!user) {
-        return res
-          .status(400)
-          .json({ status: false, message: "tidak dapat menemukan user" });
-      }
-      userId = user.id;
-    } else {
-      return res
-        .status(400)
-        .json({ status: false, message: "tidak memiliki akses" });
-    }
     const {
       nis,
       semester,
@@ -280,6 +257,29 @@ exports.updateSiswaProfile = async (req, res) => {
       return res
         .status(400)
         .json({ status: false, message: "field 'kelasId' tidak boleh kosong" });
+    }
+    const user = req.user;
+    let userId;
+    if (user.hakAkses == "siswa") {
+      userId = user.id;
+    } else if (user.hakAkses == "admin") {
+      const queryId = req.params.id;
+      if (!queryId) {
+        return res
+          .status(400)
+          .json({ status: false, message: "Query 'id' tidak boleh kosong" });
+      }
+      const user = await User.findOne({ where: { id: queryId } });
+      if (!user) {
+        return res
+          .status(400)
+          .json({ status: false, message: "tidak dapat menemukan user" });
+      }
+      userId = user.id;
+    } else {
+      return res
+        .status(400)
+        .json({ status: false, message: "tidak memiliki akses" });
     }
     const siswa = await Siswa.findOne({ where: { userId: userId } });
     if (!siswa) {
@@ -346,6 +346,8 @@ exports.deleteSiswa = async (req, res) => {
       await NilaiUas.destroy({ where: { siswaId: userProfile.id } });
       await NilaiUts.destroy({ where: { siswaId: userProfile.id } });
       await AbsenSiswa.destroy({ where: { siswaId: userProfile.id } });
+      console.log(userProfile);
+
       await userProfile.destroy();
     }
     await user.destroy();

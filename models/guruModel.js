@@ -10,7 +10,7 @@ const Guru = sequelize.define(
       allowNull: false,
     },
     nig: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     ttl: {

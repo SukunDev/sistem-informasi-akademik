@@ -2,10 +2,65 @@ const Guru = require("../models/guruModel");
 const Jadwal = require("../models/jadwalPelajaranModel");
 const Kelas = require("../models/kelasModel");
 const Matpel = require("../models/mataPelajaranModel");
+const Siswa = require("../models/siswaModel");
+const WaliMurid = require("../models/waliMuridModel");
 
 exports.getJadwalPelajaran = async (req, res) => {
   try {
     const jadwal = await Jadwal.findAll({
+      attributes: { exclude: ["guruId", "kelasId", "matpelId"] },
+      include: [
+        {
+          model: Guru,
+          as: "guru",
+          attributes: { exclude: ["userId"] },
+        },
+        {
+          model: Kelas,
+          as: "kelas",
+        },
+        {
+          model: Matpel,
+          as: "mataPelajaran",
+        },
+      ],
+    });
+    return res.status(200).json({ satus: true, data: jadwal });
+  } catch (error) {
+    return res.status(500).json({ status: false, message: error.message });
+  }
+};
+
+exports.getJadwalPelajaranSiswa = async (req, res) => {
+  try {
+    const user = req.user;
+    let siswaId;
+    if (user.hakAkses == "siswa") {
+      const siswa = await Siswa.findOne({
+        where: { userId: user.id },
+      });
+      siswaId = siswa.id;
+    } else if (user.hakAkses == "wali murid") {
+      const wali = await WaliMurid.findOne({
+        where: { userId: user.id },
+      });
+      siswaId = wali.siswaId;
+    }
+    if (!siswaId) {
+      return res
+        .status(400)
+        .json({ status: false, message: "tidak dapat menemukan siswa" });
+    }
+    const siswa = await Siswa.findOne({
+      where: { id: siswaId },
+    });
+    if (!siswa) {
+      return res
+        .status(400)
+        .json({ status: false, message: "tidak dapat menemukan guru" });
+    }
+    const jadwal = await Jadwal.findAll({
+      where: { kelasId: siswa.kelasId },
       attributes: { exclude: ["guruId", "kelasId", "matpelId"] },
       include: [
         {

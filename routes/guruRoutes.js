@@ -25,6 +25,7 @@ router.delete("/nilai-uas/:id", nilaiUasController.deleteNilaiUas);
 router.get("/siswa", siswaController.getSiswa);
 router.get("/siswa/:id", siswaController.getSiswaSingle);
 
-router.get("/kelas", kelasController.getKelas);
+router.get("/kelas", kelasController.getKelasByGuru);
+router.get("/kelas/:kelasId", kelasController.getSingleKelasByGuru);
 
 module.exports = router;

@@ -11,6 +11,11 @@ exports.getWaliMurid = async (req, res) => {
           model: Siswa,
           as: "siswa",
         },
+        {
+          model: User,
+          as: "user",
+          attributes: { exclude: ["password"] },
+        },
       ],
     });
     return res.status(200).json({ satus: true, data: wali });

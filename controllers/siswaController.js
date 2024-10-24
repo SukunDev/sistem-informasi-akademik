@@ -15,6 +15,11 @@ exports.getSiswa = async (req, res) => {
           model: Kelas,
           as: "kelas",
         },
+        {
+          model: User,
+          as: "user",
+          attributes: { exclude: ["password"] },
+        },
       ],
     });
     return res.status(200).json({ satus: true, data: siswa });

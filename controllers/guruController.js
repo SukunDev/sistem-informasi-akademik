@@ -6,6 +6,13 @@ exports.getGuru = async (req, res) => {
   try {
     const guru = await Guru.findAll({
       attributes: { exclude: ["userId"] },
+      include: [
+        {
+          model: User,
+          as: "user",
+          attributes: { exclude: ["password"] },
+        },
+      ],
     });
     return res.status(200).json({ satus: true, data: guru });
   } catch (error) {

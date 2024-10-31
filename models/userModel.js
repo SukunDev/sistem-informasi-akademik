@@ -30,7 +30,7 @@ const User = sequelize.define(
   }
 );
 
-User.hasMany(Siswa, { foreignKey: "userId" });
+User.hasMany(Siswa, { foreignKey: "userId", as: "user" });
 Siswa.belongsTo(User, { foreignKey: "userId", as: "user" });
 
 User.hasMany(Guru, { foreignKey: "userId" });

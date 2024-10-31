@@ -10,7 +10,14 @@ exports.getAbsen = async (req, res) => {
     const absen = await AbsenSiswa.findAll({
       attributes: { exclude: ["siswaId", "kelasId"] },
       include: [
-        { model: Siswa, as: "siswa" },
+        {
+          model: Siswa,
+          as: "siswa",
+          attributes: { exclude: ["kelasId", "userId"] },
+          include: [
+            { model: User, as: "user", attributes: { exclude: ["password"] } },
+          ],
+        },
         { model: Kelas, as: "kelas" },
       ],
     });
@@ -61,20 +68,20 @@ exports.createAbsen = async (req, res) => {
     if (user.hakAkses == "siswa") {
       userId = user.id;
     } else if (user.hakAkses == "admin") {
-      const { siswaId: id } = req.body;
+      const { userId: id } = req.body;
       if (!id) {
         return res.status(400).json({
           status: false,
           message: "field 'userId' tidak boleh kosong",
         });
       }
-      const siswa = await Siswa.findOne({ where: { id: id } });
-      if (!siswa) {
+      const user = await User.findOne({ where: { id: id } });
+      if (!user) {
         return res
           .status(400)
-          .json({ status: false, message: "siswa tidak di temukan" });
+          .json({ status: false, message: "user tidak di temukan" });
       }
-      userId = siswa.userId;
+      userId = user.id;
     }
     const { keterangan } = req.body;
     if (!keterangan) {

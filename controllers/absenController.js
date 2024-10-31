@@ -61,20 +61,20 @@ exports.createAbsen = async (req, res) => {
     if (user.hakAkses == "siswa") {
       userId = user.id;
     } else if (user.hakAkses == "admin") {
-      const { userId: id } = req.body;
+      const { siswaId: id } = req.body;
       if (!id) {
         return res.status(400).json({
           status: false,
           message: "field 'userId' tidak boleh kosong",
         });
       }
-      const user = await User.findOne({ where: { id: id } });
-      if (!user) {
+      const siswa = await Siswa.findOne({ where: { id: id } });
+      if (!siswa) {
         return res
           .status(400)
-          .json({ status: false, message: "user tidak di temukan" });
+          .json({ status: false, message: "siswa tidak di temukan" });
       }
-      userId = user.id;
+      userId = siswa.userId;
     }
     const { keterangan } = req.body;
     if (!keterangan) {

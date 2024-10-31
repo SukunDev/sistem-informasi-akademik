@@ -27,5 +27,9 @@ router.get("/siswa/:id", siswaController.getSiswaSingle);
 
 router.get("/kelas", kelasController.getKelasByGuru);
 router.get("/kelas/:kelasId", kelasController.getSingleKelasByGuru);
+router.get(
+  "/kelas/:kelasId/:mataPelajaran",
+  kelasController.getSingleKelasMapelByGuru
+);
 
 module.exports = router;

@@ -648,7 +648,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"keterangan\": \"hadir\",\r\n    \"userId\": 11\r\n}",
+									"raw": "{\r\n    \"keterangan\": \"hadir\",\r\n    \"siswaId\": 1\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -666,14 +666,14 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"keterangan\": \"hadir\",\r\n    \"userId\": 11\r\n}",
+									"raw": "{\r\n    \"keterangan\": \"hadir\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
 										}
 									}
 								},
-								"url": "http://localhost:3000/api/admin/absensi/3"
+								"url": "http://localhost:3000/api/admin/absensi/2"
 							},
 							"response": []
 						},
@@ -1110,11 +1110,20 @@
 							"response": []
 						},
 						{
-							"name": "Get Single",
+							"name": "Get by id",
 							"request": {
 								"method": "GET",
 								"header": [],
 								"url": "http://localhost:3000/api/guru/kelas/1"
+							},
+							"response": []
+						},
+						{
+							"name": "Get by id and mapel",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:3000/api/guru/kelas/1/mtk"
 							},
 							"response": []
 						}
@@ -1312,7 +1321,7 @@
 								{
 									"key": "foto",
 									"type": "file",
-									"src": "/D:/Digital Art/channels4_profile.jpg"
+									"src": "/C:/Users/Administrator/Pictures/ss2.PNG"
 								}
 							]
 						},

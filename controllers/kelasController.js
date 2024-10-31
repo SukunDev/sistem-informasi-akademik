@@ -1,6 +1,7 @@
 const Guru = require("../models/guruModel");
 const Jadwal = require("../models/jadwalPelajaranModel");
 const Kelas = require("../models/kelasModel");
+const Matpel = require("../models/mataPelajaranModel");
 const Siswa = require("../models/siswaModel");
 
 exports.getKelas = async (req, res) => {
@@ -70,6 +71,7 @@ exports.getKelasByGuru = async (req, res) => {
       .json({ status: false, message: "Terjadi kesalahan server" });
   }
 };
+
 exports.getSingleKelasByGuru = async (req, res) => {
   try {
     const { kelasId } = req.params;
@@ -115,6 +117,71 @@ exports.getSingleKelasByGuru = async (req, res) => {
     const kelasData = kelas.toJSON();
 
     return res.status(200).json({ status: true, data: kelasData });
+  } catch (error) {
+    console.error("Error fetching single kelas by guru:", error);
+    return res
+      .status(500)
+      .json({ status: false, message: "Terjadi kesalahan server" });
+  }
+};
+
+exports.getSingleKelasMapelByGuru = async (req, res) => {
+  try {
+    const { kelasId, mataPelajaran } = req.params;
+    const user = req.user;
+
+    const guru = await Guru.findOne({
+      where: { userId: user.id },
+    });
+
+    if (!guru) {
+      return res
+        .status(400)
+        .json({ status: false, message: "Guru tidak ditemukan" });
+    }
+
+    const mapel = await Matpel.findOne({ where: { nama: mataPelajaran } });
+    if (!mapel) {
+      return res
+        .status(400)
+        .json({ status: false, message: "mapel tidak ditemukan" });
+    }
+
+    const jadwal = await Jadwal.findOne({
+      where: { guruId: guru.id, kelasId: kelasId, matpelId: mapel.id },
+    });
+
+    if (!jadwal) {
+      return res
+        .status(400)
+        .json({ status: false, message: "Anda tidak memiliki kelas ajar" });
+    }
+
+    const kelas = await Kelas.findOne({
+      where: { id: kelasId },
+      include: [
+        {
+          model: Siswa,
+          as: "siswa",
+          attributes: { exclude: ["kelasId", "userId"] },
+        },
+      ],
+    });
+
+    if (!kelas) {
+      return res
+        .status(400)
+        .json({ status: false, message: "Kelas tidak ditemukan" });
+    }
+
+    const kelasData = kelas.toJSON();
+
+    return res
+      .status(200)
+      .json({
+        status: true,
+        data: { ...kelasData, jadwal: jadwal, matpel: mapel },
+      });
   } catch (error) {
     console.error("Error fetching single kelas by guru:", error);
     return res

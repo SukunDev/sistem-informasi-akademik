@@ -52,6 +52,8 @@ exports.login = async (req, res) => {
           where: { userId: user.id },
           attributes: { exclude: ["userId"] },
         });
+        break;
+
       case "admin":
         profile = await Admin.findOne({
           where: { userId: user.id },

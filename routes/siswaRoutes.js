@@ -10,6 +10,7 @@ router.get("/profile", siswaController.getSiswaProfile);
 router.post("/profile", siswaController.createSiswaProfile);
 router.post("/profile/update", siswaController.updateSiswaProfile);
 
+router.get("/absensi", absenController.getSiswaAbsen);
 router.post("/absensi", absenController.createAbsen);
 
 router.get("/nilai-uts", nilaiUtsController.getSiswaNilaiUts);

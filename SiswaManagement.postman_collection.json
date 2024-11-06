@@ -696,6 +696,34 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "Nilai UTS",
+					"item": [
+						{
+							"name": "Get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:3000/api/admin/nilai-uts"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Nilai UAS",
+					"item": [
+						{
+							"name": "Get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:3000/api/admin/nilai-uas"
+							},
+							"response": []
+						}
+					]
 				}
 			],
 			"auth": {
@@ -783,6 +811,27 @@
 				{
 					"name": "Absensi",
 					"item": [
+						{
+							"name": "GET",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"keterangan\": \"hadir\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:3000/api/siswa/absensi"
+							},
+							"response": []
+						},
 						{
 							"name": "Insert",
 							"request": {

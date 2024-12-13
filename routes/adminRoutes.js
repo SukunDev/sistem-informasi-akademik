@@ -8,6 +8,7 @@ const waliMuridController = require("../controllers/waliMuridController");
 const absenController = require("../controllers/absenController");
 const nilaiUtsController = require("../controllers/nilaiUtsController");
 const nilaiUasController = require("../controllers/nilaiUasController");
+const waliKelasController = require("../controllers/waliKelasController");
 
 const router = require("express").Router();
 
@@ -70,5 +71,10 @@ router.post("/nilai-uts", nilaiUtsController.createNilaiUts);
 
 router.get("/nilai-uas", nilaiUasController.getNilaiUas);
 router.post("/nilai-uas", nilaiUasController.createNilaiUas);
+
+router.get("/wali-kelas", waliKelasController.getWaliKelas);
+router.post("/wali-kelas", waliKelasController.createWaliKelas);
+router.post("/wali-kelas/:id", waliKelasController.updateWaliKelas);
+router.delete("/wali-kelas/:id", waliKelasController.deleteWaliKelas);
 
 module.exports = router;

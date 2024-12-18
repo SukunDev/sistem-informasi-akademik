@@ -3,6 +3,7 @@ const waliMuridController = require("../controllers/waliMuridController");
 const nilaiUtsController = require("../controllers/nilaiUtsController");
 const nilaiUasController = require("../controllers/nilaiUasController");
 const absenController = require("../controllers/absenController");
+const waliKelasController = require("../controllers/waliKelasController");
 const jadwalPelajaranController = require("../controllers/jadwalPelajaranController");
 
 router.get("/profile", waliMuridController.getWaliMuridProfile);
@@ -19,5 +20,7 @@ router.get(
   "/jadwal-pelajaran",
   jadwalPelajaranController.getJadwalPelajaranSiswa
 );
+
+router.get("/wali-kelas", waliKelasController.getWaliKelasByWaliMurid);
 
 module.exports = router;

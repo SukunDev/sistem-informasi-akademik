@@ -33,6 +33,6 @@ router.get(
   kelasController.getSingleKelasMapelByGuru
 );
 
-router.get("/wali-kelas", waliKelasController.getWaliKelas);
+router.get("/wali-kelas", waliKelasController.getWaliKelasByGuru);
 
 module.exports = router;

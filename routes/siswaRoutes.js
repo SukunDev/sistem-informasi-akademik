@@ -4,6 +4,7 @@ const absenController = require("../controllers/absenController");
 const nilaiUtsController = require("../controllers/nilaiUtsController");
 const nilaiUasController = require("../controllers/nilaiUasController");
 const guruController = require("../controllers/guruController");
+const waliKelasController = require("../controllers/waliKelasController");
 const jadwalPelajaranController = require("../controllers/jadwalPelajaranController");
 
 router.get("/profile", siswaController.getSiswaProfile);
@@ -23,5 +24,7 @@ router.get(
   "/jadwal-pelajaran",
   jadwalPelajaranController.getJadwalPelajaranSiswa
 );
+
+router.get("/wali-kelas", waliKelasController.getWaliKelasBySiswa);
 
 module.exports = router;

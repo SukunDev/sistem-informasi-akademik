@@ -1,6 +1,10 @@
 const WaliKelas = require("../models/waliKelasModel");
 const Guru = require("../models/guruModel");
 const Kelas = require("../models/kelasModel");
+const Siswa = require("../models/siswaModel");
+const NilaiUas = require("../models/nilaiUasModel");
+const NilaiUts = require("../models/nilaiUtsModel");
+const WaliMurid = require("../models/waliMuridModel");
 
 exports.getWaliKelas = async (req, res) => {
   try {
@@ -17,6 +21,130 @@ exports.getWaliKelas = async (req, res) => {
         },
       ],
     });
+    return res.status(200).json({ satus: true, data: wali });
+  } catch (error) {
+    return res.status(500).json({ status: false, message: error.message });
+  }
+};
+
+exports.getWaliKelasByGuru = async (req, res) => {
+  try {
+    const guru = await Guru.findOne({
+      where: { userId: req.user.id },
+    });
+    if (!guru) {
+      return res
+        .status(404)
+        .json({ status: false, message: "tidak dapat menemukan guru" });
+    }
+
+    const wali = await WaliKelas.findOne({
+      where: { guruId: guru.id },
+      attributes: { exclude: ["guruId", "kelasId"] },
+      include: [
+        {
+          model: Guru,
+          as: "guru",
+        },
+        {
+          model: Kelas,
+          as: "kelas",
+          include: {
+            model: Siswa,
+            as: "siswa",
+            attributes: { exclude: ["kelasId", "userId"] },
+            include: [
+              {
+                model: NilaiUas,
+                as: "nilaiUas",
+                attributes: { exclude: ["kelasId", "siswaId", "matpelId"] },
+              },
+              {
+                model: NilaiUts,
+                as: "nilaiUts",
+                attributes: { exclude: ["kelasId", "siswaId", "matpelId"] },
+              },
+            ],
+          },
+        },
+      ],
+    });
+    if (!wali) {
+      return res
+        .status(404)
+        .json({ status: false, message: "tidak dapat menemukan wali kelas" });
+    }
+    return res.status(200).json({ satus: true, data: wali });
+  } catch (error) {
+    return res.status(500).json({ status: false, message: error.message });
+  }
+};
+
+exports.getWaliKelasBySiswa = async (req, res) => {
+  try {
+    const siswa = await Siswa.findOne({
+      where: { userId: req.user.id },
+    });
+    if (!siswa) {
+      return res
+        .status(404)
+        .json({ status: false, message: "tidak dapat menemukan siswa" });
+    }
+
+    const wali = await WaliKelas.findOne({
+      where: { kelasId: siswa.kelasId },
+      attributes: { exclude: ["guruId", "kelasId"] },
+      include: [
+        {
+          model: Guru,
+          as: "guru",
+        },
+      ],
+    });
+    if (!wali) {
+      return res
+        .status(404)
+        .json({ status: false, message: "tidak dapat menemukan wali kelas" });
+    }
+    return res.status(200).json({ satus: true, data: wali });
+  } catch (error) {
+    return res.status(500).json({ status: false, message: error.message });
+  }
+};
+
+exports.getWaliKelasByWaliMurid = async (req, res) => {
+  try {
+    const wali_murid = await WaliMurid.findOne({
+      where: { userId: req.user.id },
+    });
+    if (!wali_murid) {
+      return res
+        .status(404)
+        .json({ status: false, message: "tidak dapat menemukan wali murid" });
+    }
+
+    const siswa = await Siswa.findOne({ id: wali_murid.siswaId });
+    if (!siswa) {
+      return res
+        .status(404)
+        .json({ status: false, message: "tidak dapat menemukan siswa" });
+    }
+
+    const wali = await WaliKelas.findOne({
+      where: { kelasId: siswa.kelasId },
+      attributes: { exclude: ["guruId", "kelasId"] },
+      include: [
+        {
+          model: Guru,
+          as: "guru",
+        },
+      ],
+    });
+    if (!wali) {
+      return res
+        .status(404)
+        .json({ status: false, message: "tidak dapat menemukan wali kelas" });
+    }
     return res.status(200).json({ satus: true, data: wali });
   } catch (error) {
     return res.status(500).json({ status: false, message: error.message });

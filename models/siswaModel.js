@@ -60,10 +60,10 @@ WaliMurid.belongsTo(Siswa, {
 Siswa.hasMany(AbsenSiswa, { foreignKey: "siswaId" });
 AbsenSiswa.belongsTo(Siswa, { foreignKey: "siswaId", as: "siswa" });
 
-Siswa.hasMany(NilaiUts, { foreignKey: "siswaId" });
+Siswa.hasMany(NilaiUts, { foreignKey: "siswaId", as: "nilaiUts" });
 NilaiUts.belongsTo(Siswa, { foreignKey: "siswaId", as: "siswa" });
 
-Siswa.hasMany(NilaiUas, { foreignKey: "siswaId" });
+Siswa.hasMany(NilaiUas, { foreignKey: "siswaId", as: "nilaiUas" });
 NilaiUas.belongsTo(Siswa, { foreignKey: "siswaId", as: "siswa" });
 
 module.exports = Siswa;

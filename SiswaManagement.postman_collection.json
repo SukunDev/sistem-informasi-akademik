@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "37aa3f4e-e50b-4825-ae21-4aa856d3cf02",
 		"name": "SiswaManagement",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "17661714"
 	},
 	"item": [
@@ -33,14 +33,26 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"password12\",\r\n    \"role\": \"admin\"\r\n}",
+							"raw": "{\r\n    \"username\": \"walimurid\",\r\n    \"password\": \"password12\",\r\n    \"role\": \"wali murid\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "http://localhost:3000/api/auth/login"
+						"url": {
+							"raw": "http://localhost:3000/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
 					},
 					"response": []
 				},
@@ -58,7 +70,19 @@
 								}
 							}
 						},
-						"url": "http://localhost:3000/api/auth/register"
+						"url": {
+							"raw": "http://localhost:3000/api/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
 					},
 					"response": []
 				},
@@ -67,9 +91,13 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": {
-								"token": "{{token}}"
-							}
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
 						},
 						"method": "POST",
 						"header": [],
@@ -82,7 +110,19 @@
 								}
 							}
 						},
-						"url": "http://localhost:3000/api/auth/change-password"
+						"url": {
+							"raw": "http://localhost:3000/api/auth/change-password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"change-password"
+							]
+						}
 					},
 					"response": []
 				}
@@ -99,7 +139,19 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "http://localhost:3000/api/admin/profile"
+								"url": {
+									"raw": "http://localhost:3000/api/admin/profile",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"admin",
+										"profile"
+									]
+								}
 							},
 							"response": []
 						},
@@ -117,7 +169,19 @@
 										}
 									}
 								},
-								"url": "http://localhost:3000/api/admin/profile"
+								"url": {
+									"raw": "http://localhost:3000/api/admin/profile",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"admin",
+										"profile"
+									]
+								}
 							},
 							"response": []
 						},
@@ -135,7 +199,20 @@
 										}
 									}
 								},
-								"url": "http://localhost:3000/api/admin/profile/update"
+								"url": {
+									"raw": "http://localhost:3000/api/admin/profile/update",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"admin",
+										"profile",
+										"update"
+									]
+								}
 							},
 							"response": []
 						}
@@ -149,7 +226,19 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "http://localhost:3000/api/admin/matpel"
+								"url": {
+									"raw": "http://localhost:3000/api/admin/matpel",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"admin",
+										"matpel"
+									]
+								}
 							},
 							"response": []
 						},
@@ -167,7 +256,19 @@
 										}
 									}
 								},
-								"url": "http://localhost:3000/api/admin/matpel"
+								"url": {
+									"raw": "http://localhost:3000/api/admin/matpel",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"admin",
+										"matpel"
+									]
+								}
 							},
 							"response": []
 						},
@@ -185,7 +286,20 @@
 										}
 									}
 								},
-								"url": "http://localhost:3000/api/admin/matpel/4"
+								"url": {
+									"raw": "http://localhost:3000/api/admin/matpel/4",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"admin",
+										"matpel",
+										"4"
+									]
+								}
 							},
 							"response": []
 						},
@@ -194,7 +308,20 @@
 							"request": {
 								"method": "DELETE",
 								"header": [],
-								"url": "http://localhost:3000/api/admin/matpel/4"
+								"url": {
+									"raw": "http://localhost:3000/api/admin/matpel/4",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"admin",
+										"matpel",
+										"4"
+									]
+								}
 							},
 							"response": []
 						}
@@ -220,7 +347,19 @@
 										}
 									}
 								},
-								"url": "http://localhost:3000/api/admin/kelas"
+								"url": {
+									"raw": "http://localhost:3000/api/admin/kelas",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"admin",
+										"kelas"
+									]
+								}
 							},
 							"response": []
 						},
@@ -241,7 +380,20 @@
 										}
 									}
 								},
-								"url": "http://localhost:3000/api/admin/kelas/1"
+								"url": {
+									"raw": "http://localhost:3000/api/admin/kelas/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"admin",
+										"kelas",
+										"1"
+									]
+								}
 							},
 							"response": []
 						},
@@ -259,7 +411,19 @@
 										}
 									}
 								},
-								"url": "http://localhost:3000/api/admin/kelas"
+								"url": {
+									"raw": "http://localhost:3000/api/admin/kelas",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"admin",
+										"kelas"
+									]
+								}
 							},
 							"response": []
 						},
@@ -277,7 +441,20 @@
 										}
 									}
 								},
-								"url": "http://localhost:3000/api/admin/kelas/3"
+								"url": {
+									"raw": "http://localhost:3000/api/admin/kelas/3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"admin",
+										"kelas",
+										"3"
+									]
+								}
 							},
 							"response": []
 						},
@@ -286,7 +463,20 @@
 							"request": {
 								"method": "DELETE",
 								"header": [],
-								"url": "http://localhost:3000/api/admin/kelas/3"
+								"url": {
+									"raw": "http://localhost:3000/api/admin/kelas/3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"admin",
+										"kelas",
+										"3"
+									]
+								}
 							},
 							"response": []
 						}
@@ -300,7 +490,19 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "http://localhost:3000/api/admin/jadwal-pelajaran"
+								"url": {
+									"raw": "http://localhost:3000/api/admin/jadwal-pelajaran",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"admin",
+										"jadwal-pelajaran"
+									]
+								}
 							},
 							"response": []
 						},
@@ -318,7 +520,19 @@
 										}
 									}
 								},
-								"url": "http://localhost:3000/api/admin/jadwal-pelajaran"
+								"url": {
+									"raw": "http://localhost:3000/api/admin/jadwal-pelajaran",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"admin",
+										"jadwal-pelajaran"
+									]
+								}
 							},
 							"response": []
 						},
@@ -336,7 +550,20 @@
 										}
 									}
 								},
-								"url": "http://localhost:3000/api/admin/jadwal-pelajaran/8"
+								"url": {
+									"raw": "http://localhost:3000/api/admin/jadwal-pelajaran/8",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"admin",
+										"jadwal-pelajaran",
+										"8"
+									]
+								}
 							},
 							"response": []
 						},
@@ -345,7 +572,20 @@
 							"request": {
 								"method": "DELETE",
 								"header": [],
-								"url": "http://localhost:3000/api/admin/jadwal-pelajaran/3"
+								"url": {
+									"raw": "http://localhost:3000/api/admin/jadwal-pelajaran/3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"admin",
+										"jadwal-pelajaran",
+										"3"
+									]
+								}
 							},
 							"response": []
 						}
@@ -359,7 +599,19 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "http://localhost:3000/api/admin/siswa"
+								"url": {
+									"raw": "http://localhost:3000/api/admin/siswa",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"admin",
+										"siswa"
+									]
+								}
 							},
 							"response": []
 						},
@@ -377,7 +629,19 @@
 										}
 									}
 								},
-								"url": "http://localhost:3000/api/admin/siswa"
+								"url": {
+									"raw": "http://localhost:3000/api/admin/siswa",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"admin",
+										"siswa"
+									]
+								}
 							},
 							"response": []
 						},
@@ -395,7 +659,20 @@
 										}
 									}
 								},
-								"url": "http://localhost:3000/api/admin/siswa/2"
+								"url": {
+									"raw": "http://localhost:3000/api/admin/siswa/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"admin",
+										"siswa",
+										"2"
+									]
+								}
 							},
 							"response": []
 						},
@@ -413,7 +690,20 @@
 										}
 									}
 								},
-								"url": "http://localhost:3000/api/admin/siswa/3"
+								"url": {
+									"raw": "http://localhost:3000/api/admin/siswa/3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"admin",
+										"siswa",
+										"3"
+									]
+								}
 							},
 							"response": []
 						}
@@ -427,13 +717,29 @@
 							"request": {
 								"auth": {
 									"type": "bearer",
-									"bearer": {
-										"token": "{{token}}"
-									}
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
 								},
 								"method": "GET",
 								"header": [],
-								"url": "http://localhost:3000/api/admin/guru"
+								"url": {
+									"raw": "http://localhost:3000/api/admin/guru",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"admin",
+										"guru"
+									]
+								}
 							},
 							"response": []
 						},
@@ -451,7 +757,19 @@
 										}
 									}
 								},
-								"url": "http://localhost:3000/api/admin/guru"
+								"url": {
+									"raw": "http://localhost:3000/api/admin/guru",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"admin",
+										"guru"
+									]
+								}
 							},
 							"response": []
 						},
@@ -469,7 +787,20 @@
 										}
 									}
 								},
-								"url": "http://localhost:3000/api/admin/guru/2"
+								"url": {
+									"raw": "http://localhost:3000/api/admin/guru/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"admin",
+										"guru",
+										"2"
+									]
+								}
 							},
 							"response": []
 						},
@@ -487,7 +818,20 @@
 										}
 									}
 								},
-								"url": "http://localhost:3000/api/admin/guru/9"
+								"url": {
+									"raw": "http://localhost:3000/api/admin/guru/9",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"admin",
+										"guru",
+										"9"
+									]
+								}
 							},
 							"response": []
 						}
@@ -501,7 +845,19 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "http://localhost:3000/api/admin/wali-murid"
+								"url": {
+									"raw": "http://localhost:3000/api/admin/wali-murid",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"admin",
+										"wali-murid"
+									]
+								}
 							},
 							"response": []
 						},
@@ -519,7 +875,19 @@
 										}
 									}
 								},
-								"url": "http://localhost:3000/api/admin/wali-murid"
+								"url": {
+									"raw": "http://localhost:3000/api/admin/wali-murid",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"admin",
+										"wali-murid"
+									]
+								}
 							},
 							"response": []
 						},
@@ -537,7 +905,20 @@
 										}
 									}
 								},
-								"url": "http://localhost:3000/api/admin/wali-murid/4"
+								"url": {
+									"raw": "http://localhost:3000/api/admin/wali-murid/4",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"admin",
+										"wali-murid",
+										"4"
+									]
+								}
 							},
 							"response": []
 						},
@@ -555,7 +936,20 @@
 										}
 									}
 								},
-								"url": "http://localhost:3000/api/admin/wali-murid/10"
+								"url": {
+									"raw": "http://localhost:3000/api/admin/wali-murid/10",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"admin",
+										"wali-murid",
+										"10"
+									]
+								}
 							},
 							"response": []
 						}
@@ -569,7 +963,19 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "http://localhost:3000/api/admin/get-admin"
+								"url": {
+									"raw": "http://localhost:3000/api/admin/get-admin",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"admin",
+										"get-admin"
+									]
+								}
 							},
 							"response": []
 						},
@@ -587,7 +993,19 @@
 										}
 									}
 								},
-								"url": "http://localhost:3000/api/admin/create-admin"
+								"url": {
+									"raw": "http://localhost:3000/api/admin/create-admin",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"admin",
+										"create-admin"
+									]
+								}
 							},
 							"response": []
 						},
@@ -605,7 +1023,20 @@
 										}
 									}
 								},
-								"url": "http://localhost:3000/api/admin/update-admin/5"
+								"url": {
+									"raw": "http://localhost:3000/api/admin/update-admin/5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"admin",
+										"update-admin",
+										"5"
+									]
+								}
 							},
 							"response": []
 						},
@@ -623,7 +1054,20 @@
 										}
 									}
 								},
-								"url": "http://localhost:3000/api/admin/delete-admin/5"
+								"url": {
+									"raw": "http://localhost:3000/api/admin/delete-admin/5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"admin",
+										"delete-admin",
+										"5"
+									]
+								}
 							},
 							"response": []
 						}
@@ -637,7 +1081,19 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "http://localhost:3000/api/admin/absensi"
+								"url": {
+									"raw": "http://localhost:3000/api/admin/absensi",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"admin",
+										"absensi"
+									]
+								}
 							},
 							"response": []
 						},
@@ -655,7 +1111,19 @@
 										}
 									}
 								},
-								"url": "http://localhost:3000/api/admin/absensi"
+								"url": {
+									"raw": "http://localhost:3000/api/admin/absensi",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"admin",
+										"absensi"
+									]
+								}
 							},
 							"response": []
 						},
@@ -673,7 +1141,20 @@
 										}
 									}
 								},
-								"url": "http://localhost:3000/api/admin/absensi/2"
+								"url": {
+									"raw": "http://localhost:3000/api/admin/absensi/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"admin",
+										"absensi",
+										"2"
+									]
+								}
 							},
 							"response": []
 						},
@@ -691,7 +1172,20 @@
 										}
 									}
 								},
-								"url": "http://localhost:3000/api/admin/absensi/3"
+								"url": {
+									"raw": "http://localhost:3000/api/admin/absensi/3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"admin",
+										"absensi",
+										"3"
+									]
+								}
 							},
 							"response": []
 						}
@@ -705,7 +1199,19 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "http://localhost:3000/api/admin/nilai-uts"
+								"url": {
+									"raw": "http://localhost:3000/api/admin/nilai-uts",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"admin",
+										"nilai-uts"
+									]
+								}
 							},
 							"response": []
 						}
@@ -719,7 +1225,137 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "http://localhost:3000/api/admin/nilai-uas"
+								"url": {
+									"raw": "http://localhost:3000/api/admin/nilai-uas",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"admin",
+										"nilai-uas"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Wali Kelas",
+					"item": [
+						{
+							"name": "Get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/admin/wali-kelas",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"admin",
+										"wali-kelas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Insert",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"guruId\": 1,\r\n    \"kelasId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/admin/wali-kelas",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"admin",
+										"wali-kelas"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"guruId\": 1,\r\n    \"kelasId\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/admin/wali-kelas/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"admin",
+										"wali-kelas",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"guruId\": 1,\r\n    \"kelasId\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/admin/wali-kelas/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"admin",
+										"wali-kelas",
+										"1"
+									]
+								}
 							},
 							"response": []
 						}
@@ -728,9 +1364,13 @@
 			],
 			"auth": {
 				"type": "bearer",
-				"bearer": {
-					"token": "{{token}}"
-				}
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
 			},
 			"event": [
 				{
@@ -766,7 +1406,19 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "http://localhost:3000/api/siswa/profile"
+								"url": {
+									"raw": "http://localhost:3000/api/siswa/profile",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"siswa",
+										"profile"
+									]
+								}
 							},
 							"response": []
 						},
@@ -784,7 +1436,19 @@
 										}
 									}
 								},
-								"url": "http://localhost:3000/api/siswa/profile"
+								"url": {
+									"raw": "http://localhost:3000/api/siswa/profile",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"siswa",
+										"profile"
+									]
+								}
 							},
 							"response": []
 						},
@@ -802,7 +1466,20 @@
 										}
 									}
 								},
-								"url": "http://localhost:3000/api/siswa/profile/update"
+								"url": {
+									"raw": "http://localhost:3000/api/siswa/profile/update",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"siswa",
+										"profile",
+										"update"
+									]
+								}
 							},
 							"response": []
 						}
@@ -828,7 +1505,19 @@
 										}
 									}
 								},
-								"url": "http://localhost:3000/api/siswa/absensi"
+								"url": {
+									"raw": "http://localhost:3000/api/siswa/absensi",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"siswa",
+										"absensi"
+									]
+								}
 							},
 							"response": []
 						},
@@ -846,7 +1535,19 @@
 										}
 									}
 								},
-								"url": "http://localhost:3000/api/siswa/absensi"
+								"url": {
+									"raw": "http://localhost:3000/api/siswa/absensi",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"siswa",
+										"absensi"
+									]
+								}
 							},
 							"response": []
 						}
@@ -860,7 +1561,19 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "http://localhost:3000/api/siswa/daftar-guru"
+								"url": {
+									"raw": "http://localhost:3000/api/siswa/daftar-guru",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"siswa",
+										"daftar-guru"
+									]
+								}
 							},
 							"response": []
 						}
@@ -874,7 +1587,19 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "http://localhost:3000/api/siswa/nilai-uts"
+								"url": {
+									"raw": "http://localhost:3000/api/siswa/nilai-uts",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"siswa",
+										"nilai-uts"
+									]
+								}
 							},
 							"response": []
 						}
@@ -888,7 +1613,19 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "http://localhost:3000/api/siswa/nilai-uas"
+								"url": {
+									"raw": "http://localhost:3000/api/siswa/nilai-uas",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"siswa",
+										"nilai-uas"
+									]
+								}
 							},
 							"response": []
 						}
@@ -902,7 +1639,45 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "http://localhost:3000/api/siswa/jadwal-pelajaran"
+								"url": {
+									"raw": "http://localhost:3000/api/siswa/jadwal-pelajaran",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"siswa",
+										"jadwal-pelajaran"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Wali Kelas",
+					"item": [
+						{
+							"name": "Get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/siswa/wali-kelas",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"siswa",
+										"wali-kelas"
+									]
+								}
 							},
 							"response": []
 						}
@@ -911,9 +1686,13 @@
 			],
 			"auth": {
 				"type": "bearer",
-				"bearer": {
-					"token": "{{token}}"
-				}
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
 			},
 			"event": [
 				{
@@ -949,7 +1728,19 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "http://localhost:3000/api/guru/profile"
+								"url": {
+									"raw": "http://localhost:3000/api/guru/profile",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"guru",
+										"profile"
+									]
+								}
 							},
 							"response": []
 						},
@@ -967,7 +1758,19 @@
 										}
 									}
 								},
-								"url": "http://localhost:3000/api/guru/profile"
+								"url": {
+									"raw": "http://localhost:3000/api/guru/profile",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"guru",
+										"profile"
+									]
+								}
 							},
 							"response": []
 						},
@@ -985,7 +1788,20 @@
 										}
 									}
 								},
-								"url": "http://localhost:3000/api/guru/profile/update"
+								"url": {
+									"raw": "http://localhost:3000/api/guru/profile/update",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"guru",
+										"profile",
+										"update"
+									]
+								}
 							},
 							"response": []
 						}
@@ -999,7 +1815,19 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "http://localhost:3000/api/guru/nilai-uts"
+								"url": {
+									"raw": "http://localhost:3000/api/guru/nilai-uts",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"guru",
+										"nilai-uts"
+									]
+								}
 							},
 							"response": []
 						},
@@ -1017,7 +1845,19 @@
 										}
 									}
 								},
-								"url": "http://localhost:3000/api/guru/nilai-uts"
+								"url": {
+									"raw": "http://localhost:3000/api/guru/nilai-uts",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"guru",
+										"nilai-uts"
+									]
+								}
 							},
 							"response": []
 						},
@@ -1035,7 +1875,20 @@
 										}
 									}
 								},
-								"url": "http://localhost:3000/api/guru/nilai-uts/1"
+								"url": {
+									"raw": "http://localhost:3000/api/guru/nilai-uts/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"guru",
+										"nilai-uts",
+										"1"
+									]
+								}
 							},
 							"response": []
 						},
@@ -1044,7 +1897,20 @@
 							"request": {
 								"method": "DELETE",
 								"header": [],
-								"url": "http://localhost:3000/api/guru/nilai-uts/2"
+								"url": {
+									"raw": "http://localhost:3000/api/guru/nilai-uts/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"guru",
+										"nilai-uts",
+										"2"
+									]
+								}
 							},
 							"response": []
 						}
@@ -1058,7 +1924,19 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "http://localhost:3000/api/guru/nilai-uas"
+								"url": {
+									"raw": "http://localhost:3000/api/guru/nilai-uas",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"guru",
+										"nilai-uas"
+									]
+								}
 							},
 							"response": []
 						},
@@ -1076,7 +1954,19 @@
 										}
 									}
 								},
-								"url": "http://localhost:3000/api/guru/nilai-uas"
+								"url": {
+									"raw": "http://localhost:3000/api/guru/nilai-uas",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"guru",
+										"nilai-uas"
+									]
+								}
 							},
 							"response": []
 						},
@@ -1094,7 +1984,20 @@
 										}
 									}
 								},
-								"url": "http://localhost:3000/api/guru/nilai-uas/1"
+								"url": {
+									"raw": "http://localhost:3000/api/guru/nilai-uas/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"guru",
+										"nilai-uas",
+										"1"
+									]
+								}
 							},
 							"response": []
 						},
@@ -1103,7 +2006,20 @@
 							"request": {
 								"method": "DELETE",
 								"header": [],
-								"url": "http://localhost:3000/api/guru/nilai-uas/2"
+								"url": {
+									"raw": "http://localhost:3000/api/guru/nilai-uas/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"guru",
+										"nilai-uas",
+										"2"
+									]
+								}
 							},
 							"response": []
 						}
@@ -1117,7 +2033,19 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "http://localhost:3000/api/guru/jadwal-mengajar"
+								"url": {
+									"raw": "http://localhost:3000/api/guru/jadwal-mengajar",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"guru",
+										"jadwal-mengajar"
+									]
+								}
 							},
 							"response": []
 						}
@@ -1131,7 +2059,19 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "http://localhost:3000/api/guru/siswa"
+								"url": {
+									"raw": "http://localhost:3000/api/guru/siswa",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"guru",
+										"siswa"
+									]
+								}
 							},
 							"response": []
 						},
@@ -1140,7 +2080,20 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "http://localhost:3000/api/guru/siswa/1"
+								"url": {
+									"raw": "http://localhost:3000/api/guru/siswa/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"guru",
+										"siswa",
+										"1"
+									]
+								}
 							},
 							"response": []
 						}
@@ -1154,7 +2107,19 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "http://localhost:3000/api/guru/kelas"
+								"url": {
+									"raw": "http://localhost:3000/api/guru/kelas",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"guru",
+										"kelas"
+									]
+								}
 							},
 							"response": []
 						},
@@ -1163,7 +2128,20 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "http://localhost:3000/api/guru/kelas/1"
+								"url": {
+									"raw": "http://localhost:3000/api/guru/kelas/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"guru",
+										"kelas",
+										"1"
+									]
+								}
 							},
 							"response": []
 						},
@@ -1172,7 +2150,47 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "http://localhost:3000/api/guru/kelas/1/mtk"
+								"url": {
+									"raw": "http://localhost:3000/api/guru/kelas/1/mtk",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"guru",
+										"kelas",
+										"1",
+										"mtk"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Wali Kelas",
+					"item": [
+						{
+							"name": "Get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/guru/wali-kelas",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"guru",
+										"wali-kelas"
+									]
+								}
 							},
 							"response": []
 						}
@@ -1181,9 +2199,13 @@
 			],
 			"auth": {
 				"type": "bearer",
-				"bearer": {
-					"token": "{{token}}"
-				}
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
 			},
 			"event": [
 				{
@@ -1219,7 +2241,19 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "http://localhost:3000/api/wali-murid/profile"
+								"url": {
+									"raw": "http://localhost:3000/api/wali-murid/profile",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"wali-murid",
+										"profile"
+									]
+								}
 							},
 							"response": []
 						},
@@ -1237,7 +2271,19 @@
 										}
 									}
 								},
-								"url": "http://localhost:3000/api/wali-murid/profile"
+								"url": {
+									"raw": "http://localhost:3000/api/wali-murid/profile",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"wali-murid",
+										"profile"
+									]
+								}
 							},
 							"response": []
 						},
@@ -1255,7 +2301,20 @@
 										}
 									}
 								},
-								"url": "http://localhost:3000/api/wali-murid/profile/update"
+								"url": {
+									"raw": "http://localhost:3000/api/wali-murid/profile/update",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"wali-murid",
+										"profile",
+										"update"
+									]
+								}
 							},
 							"response": []
 						}
@@ -1269,7 +2328,19 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "http://localhost:3000/api/wali-murid/jadwal-pelajaran"
+								"url": {
+									"raw": "http://localhost:3000/api/wali-murid/jadwal-pelajaran",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"wali-murid",
+										"jadwal-pelajaran"
+									]
+								}
 							},
 							"response": []
 						}
@@ -1283,7 +2354,19 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "http://localhost:3000/api/wali-murid/nilai-uts"
+								"url": {
+									"raw": "http://localhost:3000/api/wali-murid/nilai-uts",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"wali-murid",
+										"nilai-uts"
+									]
+								}
 							},
 							"response": []
 						}
@@ -1297,7 +2380,19 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "http://localhost:3000/api/wali-murid/nilai-uas"
+								"url": {
+									"raw": "http://localhost:3000/api/wali-murid/nilai-uas",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"wali-murid",
+										"nilai-uas"
+									]
+								}
 							},
 							"response": []
 						}
@@ -1311,7 +2406,45 @@
 							"request": {
 								"method": "GET",
 								"header": [],
-								"url": "http://localhost:3000/api/wali-murid/absensi"
+								"url": {
+									"raw": "http://localhost:3000/api/wali-murid/absensi",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"wali-murid",
+										"absensi"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Wali Kelas",
+					"item": [
+						{
+							"name": "Get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/wali-murid/wali-kelas",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"wali-murid",
+										"wali-kelas"
+									]
+								}
 							},
 							"response": []
 						}
@@ -1320,9 +2453,13 @@
 			],
 			"auth": {
 				"type": "bearer",
-				"bearer": {
-					"token": "{{token}}"
-				}
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
 			},
 			"event": [
 				{
@@ -1355,7 +2492,18 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "http://localhost:3000/uploads/1727410644029.jpg"
+						"url": {
+							"raw": "http://localhost:3000/uploads/1727410644029.jpg",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"uploads",
+								"1727410644029.jpg"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1374,7 +2522,18 @@
 								}
 							]
 						},
-						"url": "http://localhost:3000/api/uploads"
+						"url": {
+							"raw": "http://localhost:3000/api/uploads",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"uploads"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1393,7 +2552,19 @@
 								}
 							]
 						},
-						"url": "http://localhost:3000/api/uploads/1727410336711.jpg"
+						"url": {
+							"raw": "http://localhost:3000/api/uploads/1727410336711.jpg",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"uploads",
+								"1727410336711.jpg"
+							]
+						}
 					},
 					"response": []
 				}

@@ -6,6 +6,7 @@ const jadwalPelajaranController = require("../controllers/jadwalPelajaranControl
 const siswaController = require("../controllers/siswaController");
 const kelasController = require("../controllers/kelasController");
 const waliKelasController = require("../controllers/waliKelasController");
+const absenController = require("../controllers/absenController");
 
 router.get("/jadwal-mengajar", jadwalPelajaranController.getJadwalGuru);
 
@@ -34,5 +35,10 @@ router.get(
 );
 
 router.get("/wali-kelas", waliKelasController.getWaliKelasByGuru);
+
+router.get("/wali-kelas/absensi", absenController.getAbsenByWaliKelas);
+router.post("/wali-kelas/absensi", absenController.createAbsen);
+router.post("/wali-kelas/absensi/:id", absenController.updateAbsen);
+router.delete("/wali-kelas/absensi/:id", absenController.deleteAbsen);
 
 module.exports = router;

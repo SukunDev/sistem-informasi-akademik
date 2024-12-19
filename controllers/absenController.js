@@ -1,13 +1,52 @@
 const AbsenSiswa = require("../models/absenSiswaModel");
+const Guru = require("../models/guruModel");
 const Kelas = require("../models/kelasModel");
 const Siswa = require("../models/siswaModel");
 const User = require("../models/userModel");
+const WaliKelas = require("../models/waliKelasModel");
 const WaliMurid = require("../models/waliMuridModel");
 const helper = require("../utils/helper");
 
 exports.getAbsen = async (req, res) => {
   try {
     const absen = await AbsenSiswa.findAll({
+      attributes: { exclude: ["siswaId", "kelasId"] },
+      include: [
+        {
+          model: Siswa,
+          as: "siswa",
+          attributes: { exclude: ["kelasId", "userId"] },
+          include: [
+            { model: User, as: "user", attributes: { exclude: ["password"] } },
+          ],
+        },
+        { model: Kelas, as: "kelas" },
+      ],
+    });
+    return res.status(200).json({ satus: true, data: absen });
+  } catch (error) {
+    return res.status(500).json({ status: false, message: error.message });
+  }
+};
+
+exports.getAbsenByWaliKelas = async (req, res) => {
+  try {
+    const user = req.user;
+    const guru = await Guru.findOne({ where: { userId: user.id } });
+    if (!guru) {
+      return res
+        .status(400)
+        .json({ status: false, message: "tidak memiliki akses" });
+    }
+    const waliKelas = await WaliKelas.findOne({ where: { guruId: guru.id } });
+    if (!waliKelas) {
+      return res
+        .status(400)
+        .json({ status: false, message: "tidak memiliki akses" });
+    }
+
+    const absen = await AbsenSiswa.findAll({
+      where: { kelasId: waliKelas.kelasId },
       attributes: { exclude: ["siswaId", "kelasId"] },
       include: [
         {
@@ -63,11 +102,38 @@ exports.getSiswaAbsen = async (req, res) => {
 
 exports.createAbsen = async (req, res) => {
   try {
-    const user = req.user;
     let userId;
-    if (user.hakAkses == "siswa") {
+    if (req.user.hakAkses == "siswa") {
+      userId = req.user.id;
+    } else if (req.user.hakAkses == "admin") {
+      const { userId: id } = req.body;
+      if (!id) {
+        return res.status(400).json({
+          status: false,
+          message: "field 'userId' tidak boleh kosong",
+        });
+      }
+      const user = await User.findOne({ where: { id: id } });
+      if (!user) {
+        return res
+          .status(400)
+          .json({ status: false, message: "user tidak di temukan" });
+      }
       userId = user.id;
-    } else if (user.hakAkses == "admin") {
+    } else if (req.user.hakAkses == "guru") {
+      const guru = await Guru.findOne({ where: { userId: req.user.id } });
+      if (!guru) {
+        return res
+          .status(400)
+          .json({ status: false, message: "tidak memiliki akses" });
+      }
+      const waliKelas = await WaliKelas.findOne({ where: { guruId: guru.id } });
+      if (!waliKelas) {
+        return res.status(400).json({
+          status: false,
+          message: "kamu tidak memiliki akses",
+        });
+      }
       const { userId: id } = req.body;
       if (!id) {
         return res.status(400).json({
@@ -135,10 +201,24 @@ exports.createAbsen = async (req, res) => {
 exports.updateAbsen = async (req, res) => {
   try {
     const user = req.user;
-    if (user.hakAkses != "admin") {
+    if (user.hakAkses != "admin" && user.hakAkses != "guru") {
       return res
         .status(400)
         .json({ status: false, message: "tidak memiliki akses" });
+    } else if (user.hakAkses == "guru") {
+      const guru = await Guru.findOne({ where: { userId: user.id } });
+      if (!guru) {
+        return res
+          .status(400)
+          .json({ status: false, message: "tidak memiliki akses" });
+      }
+      const waliKelas = await WaliKelas.findOne({ where: { guruId: guru.id } });
+      if (!waliKelas) {
+        return res.status(400).json({
+          status: false,
+          message: "kamu tidak memiliki akses",
+        });
+      }
     }
     const { keterangan } = req.body;
     const absenId = req.params.id;
@@ -184,10 +264,24 @@ exports.deleteAbsen = async (req, res) => {
   try {
     const absenId = req.params.id;
     const user = req.user;
-    if (user.hakAkses !== "admin") {
+    if (user.hakAkses !== "admin" && user.hakAkses != "guru") {
       return res
         .status(400)
         .json({ status: false, message: "kamu tidak memiliki akses" });
+    } else if (user.hakAkses == "guru") {
+      const guru = await Guru.findOne({ where: { userId: user.id } });
+      if (!guru) {
+        return res
+          .status(400)
+          .json({ status: false, message: "tidak memiliki akses" });
+      }
+      const waliKelas = await WaliKelas.findOne({ where: { guruId: guru.id } });
+      if (!waliKelas) {
+        return res.status(400).json({
+          status: false,
+          message: "kamu tidak memiliki akses",
+        });
+      }
     }
     const absen = await AbsenSiswa.findOne({ where: { id: absenId } });
     if (!absen) {

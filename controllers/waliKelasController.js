@@ -5,6 +5,7 @@ const Siswa = require("../models/siswaModel");
 const NilaiUas = require("../models/nilaiUasModel");
 const NilaiUts = require("../models/nilaiUtsModel");
 const WaliMurid = require("../models/waliMuridModel");
+const Matpel = require("../models/mataPelajaranModel");
 
 exports.getWaliKelas = async (req, res) => {
   try {
@@ -58,11 +59,19 @@ exports.getWaliKelasByGuru = async (req, res) => {
                 model: NilaiUas,
                 as: "nilaiUas",
                 attributes: { exclude: ["kelasId", "siswaId", "matpelId"] },
+                include:{
+                  model: Matpel,
+                  as: "mataPelajaran",
+                },
               },
               {
                 model: NilaiUts,
                 as: "nilaiUts",
                 attributes: { exclude: ["kelasId", "siswaId", "matpelId"] },
+                include:{
+                  model: Matpel,
+                  as: "mataPelajaran",
+                },
               },
             ],
           },
